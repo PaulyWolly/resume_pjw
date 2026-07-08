@@ -1,0 +1,36 @@
+<div class="page">
+  <div class="toolbar">
+    <button
+      class="download-btn"
+      type="button"
+      (click)="downloadPdf()"
+      [disabled]="generating()"
+    >
+      @if (generating()) {
+        Generating PDF…
+      } @else {
+        ↓ Download PDF
+      }
+    </button>
+  </div>
+
+  <main id="resume-content" class="resume-card">
+    <app-header
+      [name]="resume.name"
+      [headline]="resume.headline"
+      [contact]="resume.contact"
+      [summary]="resume.summary"
+    />
+
+    <app-experience
+      [jobs]="resume.experience"
+      [education]="resume.education"
+    />
+
+    <app-skills [skillGroups]="resume.skillGroups" />
+  </main>
+
+  <footer class="page-footer">
+    <p>Built with Angular v20 · Hosted on Netlify</p>
+  </footer>
+</div>

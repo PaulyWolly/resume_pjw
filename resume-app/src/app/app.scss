@@ -1,0 +1,76 @@
+.page {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.25rem;
+  background: var(--navy-700);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+  box-shadow: var(--shadow-sm);
+
+  &:hover:not(:disabled) {
+    background: var(--navy-600);
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: wait;
+  }
+}
+
+.resume-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 0 1.5rem 1.35rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.page-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+
+  p {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+  }
+}
+
+@media print {
+  .toolbar,
+  .page-footer {
+    display: none;
+  }
+
+  .resume-card {
+    box-shadow: none;
+    border: none;
+    padding: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .resume-card {
+    padding: 0 1.25rem 1.25rem;
+  }
+}

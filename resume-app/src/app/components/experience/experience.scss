@@ -1,0 +1,87 @@
+.experience {
+  margin-bottom: 1rem;
+}
+
+.job,
+.education {
+  margin-bottom: 20px; /* space under the HR before the next job */
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--line);
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.job__header,
+.education__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.3rem;
+}
+
+.job__title,
+.education__focus {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.1rem;
+}
+
+.job__company,
+.education__institution {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.job__arrangement {
+  color: var(--ink-faint);
+}
+
+.job__dates,
+.education__dates {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+.job__highlights {
+  padding-left: 1.05rem;
+  list-style: disc;
+
+  li {
+    margin-bottom: 0.2rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.4;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.education__note {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.section-title--spaced {
+  margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+  .job__header,
+  .education__header {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+}

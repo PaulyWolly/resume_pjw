@@ -1,0 +1,43 @@
+<section class="experience">
+  <h3 class="section-title">Work Experience</h3>
+
+  @for (job of jobs(); track job.company + job.startDate) {
+    <article class="job">
+      <div class="job__header">
+        <div>
+          <h3 class="job__title">{{ job.title }}</h3>
+          <p class="job__company">
+            {{ job.company }}
+            <span class="job__arrangement">({{ job.arrangement }})</span>
+          </p>
+        </div>
+        <time class="job__dates">{{ job.startDate }} – {{ job.endDate }}</time>
+      </div>
+
+      <ul class="job__highlights">
+        @for (highlight of job.highlights; track highlight) {
+          <li>{{ highlight }}</li>
+        }
+      </ul>
+    </article>
+  }
+
+  <h3 class="section-title section-title--spaced">Education</h3>
+
+  @for (entry of education(); track entry.institution) {
+    <article class="education">
+      <div class="education__header">
+        <div>
+          <h3 class="education__focus">{{ entry.focus }}</h3>
+          <p class="education__institution">
+            {{ entry.institution }}, {{ entry.location }}
+          </p>
+        </div>
+        <time class="education__dates">{{ entry.startYear }} – {{ entry.endYear }}</time>
+      </div>
+      @if (entry.note) {
+        <p class="education__note">{{ entry.note }}</p>
+      }
+    </article>
+  }
+</section>

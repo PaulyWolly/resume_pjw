@@ -1,0 +1,198 @@
+.resume-header {
+  margin-bottom: 1.1rem;
+}
+
+.resume-header__banner {
+  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
+  color: #fff;
+  border-radius: 0;
+  /* Bleed to full width of the resume card */
+  margin-inline: -1.5rem;
+  padding: 1.5rem 1.5rem 1.25rem;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .resume-header__banner {
+    margin-inline: -1.25rem;
+  }
+}
+
+.resume-header__name {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.35rem;
+}
+
+.resume-header__headline {
+  margin: 0 0 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+}
+
+.resume-header__contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.resume-header__contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem 1.25rem;
+}
+
+.contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.92);
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: var(--accent);
+  }
+
+  &--button {
+    font-family: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+
+.resume-header__summary {
+  margin-top: 1rem;
+
+  p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+}
+
+.section-title {
+  color: var(--navy-700);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid var(--navy-700);
+  display: inline-block;
+}
+
+/* ===== Map modal ===== */
+.map-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(13, 27, 62, 0.55);
+  backdrop-filter: blur(3px);
+  animation: map-fade 0.15s ease;
+}
+
+.map-modal__dialog {
+  width: min(720px, 100%);
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: map-pop 0.18s ease;
+}
+
+.map-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1.1rem;
+  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
+  color: #fff;
+}
+
+.map-modal__title {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.map-modal__close {
+  background: rgba(255, 255, 255, 0.14);
+  border: none;
+  color: #fff;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.28);
+  }
+}
+
+.map-modal__frame {
+  display: block;
+  width: 100%;
+  height: 380px;
+  border: 0;
+}
+
+.map-modal__footer {
+  padding: 0.75rem 1.1rem;
+  text-align: right;
+  border-top: 1px solid var(--line);
+}
+
+.map-modal__link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--navy-700);
+
+  &:hover {
+    color: var(--accent-strong);
+  }
+}
+
+@keyframes map-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes map-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

@@ -1,0 +1,94 @@
+<header class="resume-header">
+  <div class="resume-header__banner">
+    <h1 class="resume-header__name">{{ name() }}</h1>
+    <p class="resume-header__headline">{{ headline() }}</p>
+
+    <div class="resume-header__contact">
+      <div class="resume-header__contact-row">
+        <a class="contact-item" [href]="'mailto:' + contact().email">
+          <span class="contact-item__icon" aria-hidden="true">✉</span>
+          {{ contact().email }}
+        </a>
+        <button
+          type="button"
+          class="contact-item contact-item--button"
+          (click)="openMap()"
+          title="View on Google Maps"
+        >
+          <span class="contact-item__icon" aria-hidden="true">🏠</span>
+          {{ contact().location }}
+        </button>
+        <a class="contact-item" [href]="phoneHref(contact().phone)">
+          <span class="contact-item__icon" aria-hidden="true">📞</span>
+          {{ contact().phone }}
+        </a>
+      </div>
+
+      <div class="resume-header__contact-row">
+        @for (link of contact().links; track link.href) {
+          <a class="contact-item" [href]="link.href" target="_blank" rel="noopener noreferrer">
+            <span class="contact-item__icon" aria-hidden="true">
+              @switch (link.icon) {
+                @case ('linkedin') { in }
+                @case ('github') { gh }
+                @case ('globe') { 🌐 }
+                @default { ↗ }
+              }
+            </span>
+            {{ link.value }}
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+
+  <section class="resume-header__summary">
+    <h2 class="section-title">Summary</h2>
+    <p>{{ summary() }}</p>
+  </section>
+</header>
+
+@if (mapOpen()) {
+  <div class="map-modal" (click)="closeMap()">
+    <div
+      class="map-modal__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Location map"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="map-modal__header">
+        <span class="map-modal__title">
+          <span aria-hidden="true">🏠</span> {{ contact().location }}
+        </span>
+        <button
+          type="button"
+          class="map-modal__close"
+          (click)="closeMap()"
+          aria-label="Close map"
+        >
+          ✕
+        </button>
+      </div>
+
+      <iframe
+        class="map-modal__frame"
+        [src]="mapEmbedUrl()"
+        title="Google Map"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+
+      <div class="map-modal__footer">
+        <a
+          class="map-modal__link"
+          [href]="mapExternalUrl()"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open in Google Maps ↗
+        </a>
+      </div>
+    </div>
+  </div>
+}

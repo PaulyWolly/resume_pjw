@@ -1,0 +1,378 @@
+import { Injectable, signal } from '@angular/core';
+import { Resume } from '../models/resume.model';
+
+type JsPdfDoc = import('jspdf').jsPDF;
+type IconKind = 'email' | 'home' | 'phone' | 'linkedin' | 'github' | 'globe';
+
+/**
+ * PDF spacing is tuned to mirror the web resume layout:
+ * - clear separation between jobs
+ * - readable bullet leading
+ * - without oversized empty blocks
+ */
+@Injectable({ providedIn: 'root' })
+export class PdfService {
+  readonly generating = signal(false);
+
+  private readonly pageWidth = 210;
+  private readonly pageHeight = 297;
+  private readonly marginX = 14;
+  private readonly marginTop = 12;
+  private readonly marginBottom = 12;
+  private readonly contentWidth = this.pageWidth - this.marginX * 2;
+
+  private readonly navy: [number, number, number] = [27, 58, 122];
+  private readonly ink: [number, number, number] = [31, 41, 55];
+  private readonly muted: [number, number, number] = [75, 85, 99];
+  private readonly faint: [number, number, number] = [107, 114, 128];
+
+  async download(resume: Resume, filename: string): Promise<void> {
+    if (this.generating()) {
+      return;
+    }
+
+    this.generating.set(true);
+
+    try {
+      const { jsPDF } = await import('jspdf');
+      const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+      let y = this.marginTop;
+
+      y = this.drawHeader(doc, resume, y);
+      y = this.drawSectionTitle(doc, 'Summary', y);
+      y = this.drawWrappedText(doc, resume.summary, y, 9, this.muted, 4.1);
+      y += 3;
+
+      y = this.drawSectionTitle(doc, 'Work Experience', y);
+      for (const job of resume.experience) {
+        y = this.beginJob(doc, job, y);
+        y = this.drawJob(doc, job, y);
+      }
+
+      y += 1.5;
+      y = this.drawSectionTitle(doc, 'Education', y);
+      for (const entry of resume.education) {
+        y = this.ensureSpace(doc, y, 12);
+        y = this.drawEducation(doc, entry, y);
+      }
+
+      y += 1.5;
+      y = this.drawSectionTitle(doc, 'Skills', y);
+      for (const group of resume.skillGroups) {
+        y = this.ensureSpace(doc, y, 12);
+        y = this.drawSkillGroup(doc, group, y);
+      }
+
+      doc.save(filename);
+    } finally {
+      this.generating.set(false);
+    }
+  }
+
+  private drawHeader(doc: JsPdfDoc, resume: Resume, _y: number): number {
+    const bannerHeight = 38;
+    doc.setFillColor(...this.navy);
+    doc.rect(0, 0, this.pageWidth, bannerHeight, 'F');
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(18);
+    doc.text(resume.name, this.pageWidth / 2, 11, { align: 'center' });
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(220, 230, 245);
+    doc.text(resume.headline, this.pageWidth / 2, 17.5, { align: 'center' });
+
+    doc.setFontSize(8);
+    doc.setTextColor(255, 255, 255);
+
+    const mapsUrl = `https://maps.google.com/maps?q=${encodeURIComponent(resume.contact.location)}`;
+    const phoneHref = `tel:${resume.contact.phone.replace(/[^0-9+]/g, '')}`;
+
+    this.drawCenteredLinkRow(
+      doc,
+      [
+        { text: resume.contact.email, url: `mailto:${resume.contact.email}`, icon: 'email' },
+        { text: resume.contact.location, url: mapsUrl, icon: 'home' },
+        { text: resume.contact.phone, url: phoneHref, icon: 'phone' },
+      ],
+      25.5,
+    );
+
+    this.drawCenteredLinkRow(
+      doc,
+      resume.contact.links.map((link) => ({
+        text: link.value,
+        url: link.href,
+        icon: link.icon as 'linkedin' | 'github' | 'globe',
+      })),
+      32,
+    );
+
+    // ~20px extra breathing room under the navy banner before Summary
+    return bannerHeight + 11;
+  }
+
+  /** Draws a centered row of icon + clickable text items separated by · */
+  private drawCenteredLinkRow(
+    doc: JsPdfDoc,
+    items: Array<{ text: string; url: string; icon: IconKind }>,
+    y: number,
+  ): void {
+    const sep = '  ·  ';
+    const iconSize = 2.6;
+    const iconGap = 1.2;
+    const sepWidth = doc.getTextWidth(sep);
+
+    const itemWidths = items.map((item) => {
+      return iconSize + iconGap + doc.getTextWidth(item.text);
+    });
+    const totalWidth =
+      itemWidths.reduce((sum, w) => sum + w, 0) + sepWidth * (items.length - 1);
+
+    let x = (this.pageWidth - totalWidth) / 2;
+
+    items.forEach((item, index) => {
+      this.drawIcon(doc, item.icon, x, y - 1.7, iconSize);
+      x += iconSize + iconGap;
+
+      doc.setTextColor(255, 255, 255);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      doc.textWithLink(item.text, x, y, { url: item.url });
+      x += doc.getTextWidth(item.text);
+
+      if (index < items.length - 1) {
+        doc.text(sep, x, y);
+        x += sepWidth;
+      }
+    });
+  }
+
+  private drawIcon(doc: JsPdfDoc, kind: IconKind, x: number, y: number, size: number): void {
+    doc.setDrawColor(255, 255, 255);
+    doc.setFillColor(255, 255, 255);
+    doc.setLineWidth(0.25);
+    doc.setTextColor(255, 255, 255);
+
+    switch (kind) {
+      case 'email': {
+        // Envelope
+        doc.rect(x, y + 0.4, size, size * 0.7, 'S');
+        doc.line(x, y + 0.4, x + size / 2, y + size * 0.75);
+        doc.line(x + size, y + 0.4, x + size / 2, y + size * 0.75);
+        break;
+      }
+      case 'home': {
+        // House
+        const mid = x + size / 2;
+        doc.line(x, y + size * 0.45, mid, y);
+        doc.line(mid, y, x + size, y + size * 0.45);
+        doc.rect(x + size * 0.2, y + size * 0.45, size * 0.6, size * 0.5, 'S');
+        break;
+      }
+      case 'phone': {
+        // Simple handset
+        doc.roundedRect(x + 0.4, y, size * 0.55, size, 0.4, 0.4, 'S');
+        break;
+      }
+      case 'linkedin': {
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(5.5);
+        doc.text('in', x + 0.15, y + size * 0.75);
+        break;
+      }
+      case 'github': {
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(5);
+        doc.text('gh', x, y + size * 0.75);
+        break;
+      }
+      case 'globe': {
+        // Globe: circle + meridians
+        const cx = x + size / 2;
+        const cy = y + size / 2;
+        const r = size / 2;
+        doc.circle(cx, cy, r, 'S');
+        doc.ellipse(cx, cy, r * 0.4, r, 'S');
+        doc.line(x, cy, x + size, cy);
+        break;
+      }
+    }
+  }
+
+  private drawSectionTitle(doc: JsPdfDoc, title: string, y: number): number {
+    y = this.ensureSpace(doc, y, 12);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(...this.navy);
+    doc.text(title, this.marginX, y);
+
+    const textWidth = doc.getTextWidth(title);
+    doc.setDrawColor(...this.navy);
+    doc.setLineWidth(0.4);
+    doc.line(this.marginX, y + 1.2, this.marginX + textWidth, y + 1.2);
+
+    // Extra breathing room after section headers (Summary, Work Experience, etc.)
+    return y + 9;
+  }
+
+  /**
+   * Keep job title + company with at least the first bullet.
+   * Avoids orphaning a heading alone at the bottom of a page.
+   */
+  private beginJob(
+    doc: JsPdfDoc,
+    job: Resume['experience'][number],
+    y: number,
+  ): number {
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8.5);
+
+    const firstBullet = job.highlights[0] ?? '';
+    const lines = doc.splitTextToSize(firstBullet, this.contentWidth - 3) as string[];
+    const lineHeight = 3.9;
+    const firstBulletHeight = Math.max(lines.length, 1) * lineHeight + 0.7;
+
+    // title (4.2) + company (4.8) + first bullet
+    const needed = 4.2 + 4.8 + firstBulletHeight;
+    return this.ensureSpace(doc, y, needed);
+  }
+
+  private drawJob(
+    doc: JsPdfDoc,
+    job: Resume['experience'][number],
+    y: number,
+  ): number {
+    // Title + dates (same row)
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.setTextColor(...this.ink);
+    doc.text(job.title, this.marginX, y);
+
+    const dates = `${job.startDate} – ${job.endDate}`;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8.5);
+    doc.setTextColor(...this.faint);
+    doc.text(dates, this.pageWidth - this.marginX, y, { align: 'right' });
+    y += 4.2;
+
+    // Company line — tight under title, like the web
+    doc.setFontSize(8.5);
+    doc.setTextColor(...this.muted);
+    doc.text(`${job.company} (${job.arrangement})`, this.marginX, y);
+    y += 4.8;
+
+    for (const highlight of job.highlights) {
+      y = this.drawBullet(doc, highlight, y);
+    }
+
+    // Between-job gap ≈ web margin+padding (~1.1rem)
+    return y + 4.5;
+  }
+
+  private drawEducation(
+    doc: JsPdfDoc,
+    entry: Resume['education'][number],
+    y: number,
+  ): number {
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9.5);
+    doc.setTextColor(...this.ink);
+    doc.text(entry.focus, this.marginX, y);
+
+    const dates = `${entry.startYear} – ${entry.endYear}`;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8.5);
+    doc.setTextColor(...this.faint);
+    doc.text(dates, this.pageWidth - this.marginX, y, { align: 'right' });
+    y += 4.2;
+
+    doc.setFontSize(8.5);
+    doc.setTextColor(...this.muted);
+    doc.text(`${entry.institution}, ${entry.location}`, this.marginX, y);
+    y += 4.2;
+
+    if (entry.note) {
+      doc.setFont('helvetica', 'italic');
+      doc.setFontSize(8);
+      doc.setTextColor(...this.faint);
+      doc.text(entry.note, this.marginX, y);
+      y += 4;
+    }
+
+    return y + 3.5;
+  }
+
+  private drawSkillGroup(
+    doc: JsPdfDoc,
+    group: Resume['skillGroups'][number],
+    y: number,
+  ): number {
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8.5);
+    doc.setTextColor(...this.navy);
+    doc.text(group.category, this.marginX, y);
+    y += 3.8;
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(...this.muted);
+    y = this.drawWrappedText(doc, group.skills.join(' · '), y, 8, this.muted, 3.6);
+    return y + 2.5;
+  }
+
+  private drawBullet(doc: JsPdfDoc, text: string, y: number): number {
+    const bulletIndent = this.marginX + 3;
+    const textWidth = this.contentWidth - 3;
+    const lines = doc.splitTextToSize(text, textWidth) as string[];
+    const lineHeight = 3.9;
+    const blockHeight = lines.length * lineHeight + 0.8;
+
+    y = this.ensureSpace(doc, y, blockHeight);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8.5);
+    doc.setTextColor(...this.muted);
+    doc.text('•', this.marginX, y);
+
+    for (const line of lines) {
+      doc.text(line, bulletIndent, y);
+      y += lineHeight;
+    }
+
+    // Small gap between bullets (mirrors web li margin)
+    return y + 0.7;
+  }
+
+  private drawWrappedText(
+    doc: JsPdfDoc,
+    text: string,
+    y: number,
+    fontSize: number,
+    color: [number, number, number],
+    lineHeight: number,
+  ): number {
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(fontSize);
+    doc.setTextColor(...color);
+
+    const lines = doc.splitTextToSize(text, this.contentWidth) as string[];
+    for (const line of lines) {
+      y = this.ensureSpace(doc, y, lineHeight + 0.8);
+      doc.text(line, this.marginX, y);
+      y += lineHeight;
+    }
+
+    return y;
+  }
+
+  private ensureSpace(doc: JsPdfDoc, y: number, needed: number): number {
+    if (y + needed > this.pageHeight - this.marginBottom) {
+      doc.addPage();
+      return this.marginTop;
+    }
+    return y;
+  }
+}

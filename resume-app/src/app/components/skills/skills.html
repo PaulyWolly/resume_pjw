@@ -1,0 +1,14 @@
+<footer class="skills">
+  <h3 class="section-title">Skills</h3>
+
+  @for (group of skillGroups(); track group.category) {
+    <div class="skills__group">
+      <h3 class="skills__category">{{ group.category }}</h3>
+      <div class="skills__chips">
+        @for (skill of group.skills; track skill) {
+          <span class="chip">{{ skill }}</span>
+        }
+      </div>
+    </div>
+  }
+</footer>
