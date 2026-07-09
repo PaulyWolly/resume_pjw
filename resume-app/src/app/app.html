@@ -1,7 +1,15 @@
 <div class="page">
   <div class="toolbar">
     <button
-      class="download-btn"
+      class="toolbar-btn toolbar-btn--secondary"
+      type="button"
+      (click)="openRecommendation()"
+    >
+      ✦ Letter of Recommendation
+    </button>
+
+    <button
+      class="toolbar-btn"
       type="button"
       (click)="downloadPdf()"
       [disabled]="generating()"
@@ -9,7 +17,7 @@
       @if (generating()) {
         Generating PDF…
       } @else {
-        ↓ Download PDF
+        ↓ Download Resume PDF
       }
     </button>
   </div>
@@ -34,3 +42,48 @@
     <p>Built with Angular v20 · Hosted on Netlify</p>
   </footer>
 </div>
+
+@if (recommendationOpen()) {
+  <div class="rec-modal" (click)="closeRecommendation()">
+    <div
+      class="rec-modal__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Letter of Recommendation"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="rec-modal__header">
+        <div class="rec-modal__titles">
+          <h2 class="rec-modal__title">Letter of Recommendation</h2>
+          <p class="rec-modal__subtitle">Thermo Fisher Scientific</p>
+        </div>
+
+        <div class="rec-modal__actions">
+          <a
+            class="toolbar-btn toolbar-btn--compact"
+            [href]="recommendationPdfUrl"
+            [download]="recommendationDownloadName"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ↓ Download
+          </a>
+          <button
+            type="button"
+            class="rec-modal__close"
+            (click)="closeRecommendation()"
+            aria-label="Close letter of recommendation"
+          >
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <iframe
+        class="rec-modal__frame"
+        [src]="recommendationEmbedUrl"
+        title="Letter of Recommendation from Thermo Fisher Scientific"
+      ></iframe>
+    </div>
+  </div>
+}

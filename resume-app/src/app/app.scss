@@ -7,10 +7,12 @@
 .toolbar {
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.65rem;
   margin-bottom: 1rem;
 }
 
-.download-btn {
+.toolbar-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -22,6 +24,7 @@
   font-size: 0.88rem;
   font-weight: 600;
   cursor: pointer;
+  text-decoration: none;
   transition: background 0.15s ease, transform 0.1s ease;
   box-shadow: var(--shadow-sm);
 
@@ -33,6 +36,23 @@
   &:disabled {
     opacity: 0.65;
     cursor: wait;
+  }
+
+  &--secondary {
+    background: transparent;
+    color: var(--navy-700);
+    border: 1.5px solid var(--navy-700);
+    box-shadow: none;
+
+    &:hover:not(:disabled) {
+      background: var(--navy-700);
+      color: #fff;
+    }
+  }
+
+  &--compact {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -56,9 +76,113 @@
   }
 }
 
+/* ===== Recommendation modal ===== */
+.rec-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(13, 27, 62, 0.55);
+  backdrop-filter: blur(3px);
+  animation: rec-fade 0.15s ease;
+}
+
+.rec-modal__dialog {
+  width: min(900px, 100%);
+  height: min(88vh, 920px);
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: rec-pop 0.18s ease;
+}
+
+.rec-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1.1rem;
+  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.rec-modal__titles {
+  min-width: 0;
+}
+
+.rec-modal__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.rec-modal__subtitle {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.rec-modal__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-shrink: 0;
+}
+
+.rec-modal__close {
+  background: rgba(255, 255, 255, 0.14);
+  border: none;
+  color: #fff;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.28);
+  }
+}
+
+.rec-modal__frame {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  background: #f3f4f6;
+}
+
+@keyframes rec-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rec-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @media print {
   .toolbar,
-  .page-footer {
+  .page-footer,
+  .rec-modal {
     display: none;
   }
 
@@ -72,5 +196,24 @@
 @media (max-width: 600px) {
   .resume-card {
     padding: 0 1.25rem 1.25rem;
+  }
+
+  .toolbar {
+    justify-content: stretch;
+  }
+
+  .toolbar-btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .rec-modal__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rec-modal__actions {
+    width: 100%;
+    justify-content: space-between;
   }
 }
