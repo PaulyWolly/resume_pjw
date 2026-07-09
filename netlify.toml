@@ -1,7 +1,6 @@
 [build]
-  base    = "resume-app"
-  command = "npm run build"
-  publish = "dist/resume-app/browser"
+  command = "npm --prefix resume-app ci && npm --prefix resume-app run build"
+  publish = "resume-app/dist/resume-app/browser"
 
 [[redirects]]
   from   = "/*"
