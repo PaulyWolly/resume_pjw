@@ -27,7 +27,10 @@ export class App {
   protected readonly recommendationDownloadName = 'Paul-Welby-Letter-of-Recommendation-TFS.pdf';
 
   protected async downloadPdf(): Promise<void> {
-    await this.pdfService.download(this.resume, 'Paul-Welby-Resume.pdf');
+    await this.pdfService.download(
+      this.resume,
+      'PaulWelby_Resume_Angular-Python-AI_7-11-2026-rev2.pdf',
+    );
   }
 
   protected openRecommendation(): void {
