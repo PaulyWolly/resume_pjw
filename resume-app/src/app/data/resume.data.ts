@@ -343,5 +343,13 @@ export const RESUME: Resume = {
         'Bootstrap UI with hooks, HOCs, Redux, Firebase Firestore, and parent-child patterns',
       githubUrl: 'https://github.com/PaulyWolly/react-hooks-firestore-crud',
     },
+    {
+      name: 'Auth0 React Sample',
+      stack: 'React',
+      description:
+        'React site with Auth0, protected routes, active menu styling, and loading states',
+      githubUrl: 'https://github.com/PaulyWolly/auth0-react-sample',
+      liveUrl: 'https://pw-auth0-react-sample.netlify.app/',
+    },
   ],
 };
