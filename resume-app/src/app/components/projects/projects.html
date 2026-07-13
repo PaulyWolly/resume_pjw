@@ -1,0 +1,80 @@
+<section class="projects">
+  <h2 class="section-title">Featured Projects</h2>
+  <p class="projects__intro">Selected Angular and React applications on GitHub</p>
+
+  <div class="projects__columns">
+    <div class="projects__column">
+      <h3 class="projects__stack">Angular</h3>
+      <ul class="projects__list">
+        @for (project of angularProjects(); track project.githubUrl) {
+          <li class="project">
+            <a
+              class="project__name"
+              [href]="project.githubUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ project.name }}
+            </a>
+            <p class="project__desc">{{ project.description }}</p>
+            <div class="project__links">
+              <a
+                [href]="project.githubUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+              @if (project.liveUrl) {
+                <a
+                  [href]="project.liveUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Live demo
+                </a>
+              }
+            </div>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="projects__column">
+      <h3 class="projects__stack">React</h3>
+      <ul class="projects__list">
+        @for (project of reactProjects(); track project.githubUrl) {
+          <li class="project">
+            <a
+              class="project__name"
+              [href]="project.githubUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ project.name }}
+            </a>
+            <p class="project__desc">{{ project.description }}</p>
+            <div class="project__links">
+              <a
+                [href]="project.githubUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+              @if (project.liveUrl) {
+                <a
+                  [href]="project.liveUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Live demo
+                </a>
+              }
+            </div>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>

@@ -35,6 +35,14 @@ export interface SkillGroup {
   skills: string[];
 }
 
+export interface Project {
+  name: string;
+  stack: 'Angular' | 'React';
+  description: string;
+  githubUrl: string;
+  liveUrl?: string;
+}
+
 export interface Resume {
   name: string;
   headline: string;
@@ -43,4 +51,5 @@ export interface Resume {
   experience: Job[];
   education: Education[];
   skillGroups: SkillGroup[];
+  projects: Project[];
 }

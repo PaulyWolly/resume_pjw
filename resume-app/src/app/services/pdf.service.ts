@@ -63,6 +63,10 @@ export class PdfService {
         y = this.drawSkillGroup(doc, group, y);
       }
 
+      y += 1.5;
+      y = this.drawSectionTitle(doc, 'Featured Projects', y);
+      y = this.drawProjects(doc, resume.projects, y);
+
       doc.save(filename);
     } finally {
       this.generating.set(false);
@@ -321,6 +325,91 @@ export class PdfService {
     doc.setTextColor(...this.muted);
     y = this.drawWrappedText(doc, group.skills.join(' · '), y, 8, this.muted, 3.6);
     return y + 2.5;
+  }
+
+  private drawProjects(
+    doc: JsPdfDoc,
+    projects: Resume['projects'],
+    y: number,
+  ): number {
+    const angular = projects.filter((p) => p.stack === 'Angular');
+    const react = projects.filter((p) => p.stack === 'React');
+
+    const gap = 6;
+    const colWidth = (this.contentWidth - gap) / 2;
+    const leftX = this.marginX;
+    const rightX = this.marginX + colWidth + gap;
+
+    y = this.ensureSpace(doc, y, 28);
+
+    // Column headers
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(...this.navy);
+    doc.text('Angular', leftX, y);
+    doc.text('React', rightX, y);
+    y += 4;
+
+    const startY = y;
+    const leftEnd = this.drawProjectColumn(doc, angular, leftX, startY, colWidth);
+    const rightEnd = this.drawProjectColumn(doc, react, rightX, startY, colWidth);
+
+    return Math.max(leftEnd, rightEnd) + 1;
+  }
+
+  private drawProjectColumn(
+    doc: JsPdfDoc,
+    projects: Resume['projects'],
+    x: number,
+    y: number,
+    colWidth: number,
+  ): number {
+    for (const project of projects) {
+      const primaryUrl = project.githubUrl || project.liveUrl || '';
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8);
+      doc.setTextColor(...this.ink);
+      const titleLines = doc.splitTextToSize(project.name, colWidth) as string[];
+      for (const line of titleLines) {
+        if (primaryUrl) {
+          doc.textWithLink(line, x, y, { url: primaryUrl });
+        } else {
+          doc.text(line, x, y);
+        }
+        y += 3.1;
+      }
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(7.2);
+      doc.setTextColor(...this.muted);
+      const descLines = doc.splitTextToSize(project.description, colWidth) as string[];
+      for (const line of descLines.slice(0, 3)) {
+        doc.text(line, x, y);
+        y += 2.85;
+      }
+
+      doc.setFontSize(7);
+      doc.setTextColor(...this.navy);
+      let linkX = x;
+
+      if (project.githubUrl) {
+        doc.textWithLink('GitHub', linkX, y, { url: project.githubUrl });
+        linkX += doc.getTextWidth('GitHub');
+      }
+
+      if (project.liveUrl) {
+        if (project.githubUrl) {
+          doc.text('  ·  ', linkX, y);
+          linkX += doc.getTextWidth('  ·  ');
+        }
+        doc.textWithLink('Live demo', linkX, y, { url: project.liveUrl });
+      }
+
+      y += 4.2;
+    }
+
+    return y;
   }
 
   private drawBullet(doc: JsPdfDoc, text: string, y: number): number {

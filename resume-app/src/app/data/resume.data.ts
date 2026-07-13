@@ -306,4 +306,42 @@ export const RESUME: Resume = {
       ],
     },
   ],
+  projects: [
+    {
+      name: 'Angular Recipe Book using NgRx',
+      stack: 'Angular',
+      description: 'Recipe book application built with Angular and NgRx state management',
+      githubUrl: 'https://github.com/PaulyWolly/recipe-book-ngrx-v15b',
+      liveUrl: 'https://recipe-book-ngrx-v15b.netlify.app/auth',
+    },
+    {
+      name: 'Angular Sandbox II',
+      stack: 'Angular',
+      description: 'Angular 14 CRUD sandbox with routing, Material, Bootstrap, and dark mode',
+      githubUrl: 'https://github.com/PaulyWolly/ng14_CRUD-pucp',
+      liveUrl: 'https://ng14-crud-pucp-v2.netlify.app/',
+    },
+    {
+      name: 'MEAN Profiling App',
+      stack: 'Angular',
+      description:
+        'Auth0/Google auth, web sockets, chat, and more — Angular v17 profiling app',
+      githubUrl: 'https://github.com/PaulyWolly/My-Profiling-App_v17',
+      liveUrl: 'https://my-profiling-app-v17-1.onrender.com/',
+    },
+    {
+      name: 'React Task Manager',
+      stack: 'React',
+      description:
+        'Bootstrap UI with state, props, parent-child data flow, Redux, and Firebase auth',
+      githubUrl: 'https://github.com/PaulyWolly/react-redux-firestore',
+    },
+    {
+      name: 'React Tutorial Library',
+      stack: 'React',
+      description:
+        'Bootstrap UI with hooks, HOCs, Redux, Firebase Firestore, and parent-child patterns',
+      githubUrl: 'https://github.com/PaulyWolly/react-hooks-firestore-crud',
+    },
+  ],
 };
