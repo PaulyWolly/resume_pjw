@@ -1,0 +1,180 @@
+.jl {
+  background: #fff;
+  color: #1a1a1a;
+  font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  padding: 1.75rem 1.75rem 2rem;
+}
+
+.jl__banner {
+  text-align: center;
+  margin-bottom: 0.35rem;
+}
+
+.jl__name {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.jl__title {
+  margin: 0.35rem 0 0.55rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.jl__contact {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #444;
+}
+
+.jl__contact a {
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.jl__contact a:hover {
+  text-decoration: underline;
+}
+
+.jl__rule {
+  border: none;
+  border-top: 1.5px solid #222;
+  margin: 0.85rem 0 1rem;
+}
+
+.jl__h2 {
+  margin: 0 0 0.55rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.jl__overview {
+  margin: 0 0 0.65rem;
+  text-align: justify;
+}
+
+.jl__competencies {
+  margin: 0;
+  text-align: center;
+  font-size: 0.82rem;
+  color: #555;
+}
+
+.jl-job {
+  margin-bottom: 0.95rem;
+}
+
+.jl-job__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+
+.jl-job__role {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.jl-job__dates {
+  flex-shrink: 0;
+  font-size: 0.82rem;
+  color: #555;
+}
+
+.jl-job__company {
+  margin: 0.15rem 0 0.35rem;
+  font-size: 0.88rem;
+}
+
+.jl-job__bullets {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.jl-job__bullets li {
+  margin-bottom: 0.25rem;
+  font-size: 0.88rem;
+}
+
+.jl-edu {
+  margin-bottom: 0.55rem;
+}
+
+.jl-edu__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.jl-edu__row p {
+  margin: 0;
+}
+
+.jl-edu__note {
+  margin: 0.2rem 0 0;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: #555;
+}
+
+.jl-projects {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.5rem;
+}
+
+.jl-projects__col {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 0.25rem;
+}
+
+.jl-project {
+  margin-bottom: 0.7rem;
+}
+
+.jl-project__name {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.jl-project__desc {
+  margin: 0.15rem 0;
+  font-size: 0.8rem;
+  color: #444;
+}
+
+.jl-project__links {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.jl-project__links a {
+  color: #0b57d0;
+  text-decoration: none;
+}
+
+.jl-project__links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  .jl-projects {
+    grid-template-columns: 1fr;
+  }
+
+  .jl-job__top,
+  .jl-edu__row {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+}

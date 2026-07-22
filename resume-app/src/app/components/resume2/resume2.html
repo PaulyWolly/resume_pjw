@@ -1,0 +1,106 @@
+<article class="jl">
+  <header class="jl__banner">
+    <h1 class="jl__name">{{ resume().name }}</h1>
+    <p class="jl__title">{{ titleLine() }}</p>
+    <p class="jl__contact">
+      {{ resume().contact.location }}
+      &nbsp;|&nbsp;
+      <a [href]="'mailto:' + resume().contact.email">{{ resume().contact.email }}</a>
+      &nbsp;|&nbsp;
+      <a [href]="'tel:' + resume().contact.phone">{{ resume().contact.phone }}</a>
+      @for (link of resume().contact.links; track link.href) {
+        &nbsp;|&nbsp;
+        <a [href]="link.href" target="_blank" rel="noopener noreferrer">{{ link.value }}</a>
+      }
+    </p>
+  </header>
+
+  <hr class="jl__rule" />
+
+  <section class="jl__section">
+    <h2 class="jl__h2">Professional Overview</h2>
+    <p class="jl__overview">{{ resume().summary }}</p>
+    <p class="jl__competencies">{{ competencyLine() }}</p>
+  </section>
+
+  <hr class="jl__rule" />
+
+  <section class="jl__section">
+    <h2 class="jl__h2">Professional Experience</h2>
+
+    @for (job of resume().experience; track job.company + job.startDate) {
+      <article class="jl-job">
+        <div class="jl-job__top">
+          <h3 class="jl-job__role">{{ job.title }}</h3>
+          <span class="jl-job__dates">{{ job.startDate }} – {{ job.endDate }}</span>
+        </div>
+        <p class="jl-job__company">{{ job.company }} ({{ job.arrangement }})</p>
+        <ul class="jl-job__bullets">
+          @for (item of job.highlights; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </article>
+    }
+  </section>
+
+  <hr class="jl__rule" />
+
+  <section class="jl__section">
+    <h2 class="jl__h2">Education</h2>
+    @for (entry of resume().education; track entry.institution) {
+      <div class="jl-edu">
+        <div class="jl-edu__row">
+          <p>
+            <strong>{{ entry.institution }}</strong>, {{ entry.location }} —
+            {{ entry.focus }}
+          </p>
+          <span>{{ entry.startYear }} – {{ entry.endYear }}</span>
+        </div>
+        @if (entry.note) {
+          <p class="jl-edu__note">{{ entry.note }}</p>
+        }
+      </div>
+    }
+  </section>
+
+  <hr class="jl__rule" />
+
+  <section class="jl__section">
+    <h2 class="jl__h2">Featured Projects</h2>
+    <div class="jl-projects">
+      <div>
+        <h3 class="jl-projects__col">Angular</h3>
+        @for (project of angularProjects(); track project.githubUrl) {
+          <div class="jl-project">
+            <p class="jl-project__name">{{ project.name }}</p>
+            <p class="jl-project__desc">{{ project.description }}</p>
+            <p class="jl-project__links">
+              <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
+              @if (project.liveUrl) {
+                ·
+                <a [href]="project.liveUrl" target="_blank" rel="noopener noreferrer">Live demo</a>
+              }
+            </p>
+          </div>
+        }
+      </div>
+      <div>
+        <h3 class="jl-projects__col">React</h3>
+        @for (project of reactProjects(); track project.githubUrl) {
+          <div class="jl-project">
+            <p class="jl-project__name">{{ project.name }}</p>
+            <p class="jl-project__desc">{{ project.description }}</p>
+            <p class="jl-project__links">
+              <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
+              @if (project.liveUrl) {
+                ·
+                <a [href]="project.liveUrl" target="_blank" rel="noopener noreferrer">Live demo</a>
+              }
+            </p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+</article>

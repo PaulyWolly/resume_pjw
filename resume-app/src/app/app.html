@@ -1,47 +1,91 @@
 <div class="page">
   <div class="toolbar">
-    <button
-      class="toolbar-btn toolbar-btn--secondary"
-      type="button"
-      (click)="openRecommendation()"
-    >
-      ✦ Letter of Recommendation
-    </button>
+    <div class="version-switcher" role="group" aria-label="Resume version">
+      <button
+        type="button"
+        class="version-btn"
+        [class.version-btn--active]="version() === 1"
+        (click)="setVersion(1)"
+      >
+        Resume 1
+        <span class="version-btn__hint">Classic layout</span>
+      </button>
+      <button
+        type="button"
+        class="version-btn"
+        [class.version-btn--active]="version() === 2"
+        (click)="setVersion(2)"
+      >
+        Resume 2
+        <span class="version-btn__hint">JobLeads style</span>
+      </button>
+      <button
+        type="button"
+        class="version-btn"
+        [class.version-btn--active]="version() === 3"
+        (click)="setVersion(3)"
+      >
+        Resume 3
+        <span class="version-btn__hint">Document layout</span>
+      </button>
+    </div>
 
-    <button
-      class="toolbar-btn"
-      type="button"
-      (click)="downloadPdf()"
-      [disabled]="generating()"
-    >
-      @if (generating()) {
-        Generating PDF…
-      } @else {
-        ↓ Download Resume PDF
-      }
-    </button>
+    <div class="toolbar__actions">
+      <button
+        class="toolbar-btn toolbar-btn--secondary"
+        type="button"
+        (click)="openRecommendation()"
+      >
+        ✦ Letter of Recommendation
+      </button>
+
+      <button
+        class="toolbar-btn"
+        type="button"
+        (click)="downloadPdf()"
+        [disabled]="generating()"
+      >
+        @if (generating()) {
+          Generating PDF…
+        } @else {
+          ↓ Download Resume {{ version() }} PDF
+        }
+      </button>
+    </div>
   </div>
 
-  <main id="resume-content" class="resume-card">
-    <app-header
-      [name]="resume.name"
-      [headline]="resume.headline"
-      [contact]="resume.contact"
-      [summary]="resume.summary"
-    />
+  <main id="resume-content" class="resume-card" [class.resume-card--flush]="version() !== 1">
+    @switch (version()) {
+      @case (1) {
+        <app-header
+          [name]="resume.name"
+          [headline]="resume.headline"
+          [contact]="resume.contact"
+          [summary]="resume.summary"
+        />
 
-    <app-experience
-      [jobs]="resume.experience"
-      [education]="resume.education"
-    />
+        <app-experience
+          [jobs]="resume.experience"
+          [education]="resume.education"
+        />
 
-    <app-skills [skillGroups]="resume.skillGroups" />
+        <app-skills [skillGroups]="resume.skillGroups" />
 
-    <app-projects [projects]="resume.projects" />
+        <app-projects [projects]="resume.projects" />
+      }
+      @case (2) {
+        <app-resume2 [resume]="resume" />
+      }
+      @case (3) {
+        <app-resume3 [resume]="resume" />
+      }
+    }
   </main>
 
   <footer class="page-footer">
-    <p>Built with Angular v20 · Hosted on Netlify</p>
+    <p>
+      Viewing Resume {{ version() }} · Built with Angular v20 · Hosted on Netlify
+    </p>
   </footer>
 </div>
 

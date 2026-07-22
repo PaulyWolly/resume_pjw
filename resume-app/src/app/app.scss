@@ -6,10 +6,60 @@
 
 .toolbar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.toolbar__actions {
+  display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
-  margin-bottom: 1rem;
+  justify-content: flex-end;
+}
+
+.version-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.version-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  padding: 0.45rem 0.85rem;
+  background: #fff;
+  color: var(--navy-700);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+
+  &__hint {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--ink-faint);
+  }
+
+  &:hover {
+    border-color: var(--navy-600);
+  }
+
+  &--active {
+    background: var(--navy-700);
+    border-color: var(--navy-700);
+    color: #fff;
+
+    .version-btn__hint {
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
 }
 
 .toolbar-btn {
@@ -63,6 +113,10 @@
   box-shadow: var(--shadow-md);
   border: 1px solid var(--line);
   overflow: hidden;
+
+  &--flush {
+    padding: 0;
+  }
 }
 
 .page-footer {
@@ -198,8 +252,17 @@
     padding: 0 1.25rem 1.25rem;
   }
 
+  .resume-card--flush {
+    padding: 0;
+  }
+
   .toolbar {
     justify-content: stretch;
+    flex-direction: column;
+  }
+
+  .toolbar__actions {
+    width: 100%;
   }
 
   .toolbar-btn {

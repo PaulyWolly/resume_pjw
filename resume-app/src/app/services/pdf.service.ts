@@ -1,14 +1,12 @@
 import { Injectable, signal } from '@angular/core';
 import { Resume } from '../models/resume.model';
+import { ResumeVersion } from '../models/resume-version';
 
 type JsPdfDoc = import('jspdf').jsPDF;
 type IconKind = 'email' | 'home' | 'phone' | 'linkedin' | 'github' | 'globe';
 
 /**
- * PDF spacing is tuned to mirror the web resume layout:
- * - clear separation between jobs
- * - readable bullet leading
- * - without oversized empty blocks
+ * Builds a text PDF for the selected resume version (1 / 2 / 3).
  */
 @Injectable({ providedIn: 'root' })
 export class PdfService {
@@ -26,7 +24,11 @@ export class PdfService {
   private readonly muted: [number, number, number] = [75, 85, 99];
   private readonly faint: [number, number, number] = [107, 114, 128];
 
-  async download(resume: Resume, filename: string): Promise<void> {
+  async download(
+    resume: Resume,
+    filename: string,
+    version: ResumeVersion = 1,
+  ): Promise<void> {
     if (this.generating()) {
       return;
     }
@@ -36,41 +38,215 @@ export class PdfService {
     try {
       const { jsPDF } = await import('jspdf');
       const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-      let y = this.marginTop;
 
-      y = this.drawHeader(doc, resume, y);
-      y = this.drawSectionTitle(doc, 'Summary', y);
-      y = this.drawWrappedText(doc, resume.summary, y, 9, this.muted, 4.1);
-      y += 3;
-
-      y = this.drawSectionTitle(doc, 'Work Experience', y);
-      for (const job of resume.experience) {
-        y = this.beginJob(doc, job, y);
-        y = this.drawJob(doc, job, y);
+      if (version === 2) {
+        this.buildJobLeadsPdf(doc, resume);
+      } else if (version === 3) {
+        this.buildDocumentPdf(doc, resume);
+      } else {
+        this.buildClassicPdf(doc, resume);
       }
-
-      y += 1.5;
-      y = this.drawSectionTitle(doc, 'Education', y);
-      for (const entry of resume.education) {
-        y = this.ensureSpace(doc, y, 12);
-        y = this.drawEducation(doc, entry, y);
-      }
-
-      y += 1.5;
-      y = this.drawSectionTitle(doc, 'Skills', y);
-      for (const group of resume.skillGroups) {
-        y = this.ensureSpace(doc, y, 12);
-        y = this.drawSkillGroup(doc, group, y);
-      }
-
-      y += 1.5;
-      y = this.drawSectionTitle(doc, 'Featured Projects', y);
-      y = this.drawProjects(doc, resume.projects, y);
 
       doc.save(filename);
     } finally {
       this.generating.set(false);
     }
+  }
+
+  /** Resume 1 — classic navy-banner layout */
+  private buildClassicPdf(doc: JsPdfDoc, resume: Resume): void {
+    let y = this.marginTop;
+
+    y = this.drawHeader(doc, resume, y);
+    y = this.drawSectionTitle(doc, 'Summary', y);
+    y = this.drawWrappedText(doc, resume.summary, y, 9, this.muted, 4.1);
+    y += 3;
+
+    y = this.drawSectionTitle(doc, 'Work Experience', y);
+    for (const job of resume.experience) {
+      y = this.beginJob(doc, job, y);
+      y = this.drawJob(doc, job, y);
+    }
+
+    y += 1.5;
+    y = this.drawSectionTitle(doc, 'Education', y);
+    for (const entry of resume.education) {
+      y = this.ensureSpace(doc, y, 12);
+      y = this.drawEducation(doc, entry, y);
+    }
+
+    y += 1.5;
+    y = this.drawSectionTitle(doc, 'Skills', y);
+    for (const group of resume.skillGroups) {
+      y = this.ensureSpace(doc, y, 12);
+      y = this.drawSkillGroup(doc, group, y);
+    }
+
+    y += 1.5;
+    y = this.drawSectionTitle(doc, 'Featured Projects', y);
+    this.drawProjects(doc, resume.projects, y);
+  }
+
+  /** Resume 2 — JobLeads / Masterclass style */
+  private buildJobLeadsPdf(doc: JsPdfDoc, resume: Resume): void {
+    let y = this.marginTop;
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(20);
+    doc.setTextColor(...this.ink);
+    doc.text(resume.name, this.pageWidth / 2, y, { align: 'center' });
+    y += 7;
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.text(resume.headline.replaceAll('·', '|'), this.pageWidth / 2, y, {
+      align: 'center',
+    });
+    y += 5;
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(...this.muted);
+    const contactBits = [
+      resume.contact.location,
+      resume.contact.email,
+      resume.contact.phone,
+      ...resume.contact.links.map((l) => l.value),
+    ];
+    const contactLine = contactBits.join('  |  ');
+    const contactLines = doc.splitTextToSize(contactLine, this.contentWidth) as string[];
+    for (const line of contactLines) {
+      doc.text(line, this.pageWidth / 2, y, { align: 'center' });
+      y += 3.5;
+    }
+    y += 2;
+
+    y = this.drawHr(doc, y);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(...this.ink);
+    doc.text('Professional Overview', this.marginX, y);
+    y += 5;
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(...this.muted);
+    y = this.drawWrappedText(doc, resume.summary, y, 9, this.muted, 4);
+    y += 2;
+
+    const competencies =
+      'Angular  |  React  |  TypeScript  |  Python  |  Generative AI / LLMs  |  NgRx  |  Azure DevOps  |  AWS  |  REST APIs  |  Agile / Scrum  |  Mentoring';
+    doc.setFontSize(8);
+    doc.setTextColor(...this.faint);
+    const compLines = doc.splitTextToSize(competencies, this.contentWidth) as string[];
+    for (const line of compLines) {
+      doc.text(line, this.pageWidth / 2, y, { align: 'center' });
+      y += 3.4;
+    }
+    y += 2;
+
+    y = this.drawHr(doc, y);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(...this.ink);
+    doc.text('Professional Experience', this.marginX, y);
+    y += 6;
+
+    for (const job of resume.experience) {
+      y = this.beginJob(doc, job, y);
+      y = this.drawJob(doc, job, y);
+    }
+
+    y += 1;
+    y = this.drawHr(doc, y);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(...this.ink);
+    doc.text('Education', this.marginX, y);
+    y += 6;
+
+    for (const entry of resume.education) {
+      y = this.ensureSpace(doc, y, 12);
+      y = this.drawEducation(doc, entry, y);
+    }
+
+    y += 1;
+    y = this.drawHr(doc, y);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(...this.ink);
+    doc.text('Featured Projects', this.marginX, y);
+    y += 6;
+    this.drawProjects(doc, resume.projects, y);
+  }
+
+  /** Resume 3 — document layout (navy banner, plain skill lists) */
+  private buildDocumentPdf(doc: JsPdfDoc, resume: Resume): void {
+    let y = this.marginTop;
+
+    // Simpler navy banner (no icon glyphs) — matches Resume 3 web look
+    const bannerHeight = 34;
+    doc.setFillColor(...this.navy);
+    doc.rect(0, 0, this.pageWidth, bannerHeight, 'F');
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(18);
+    doc.text(resume.name, this.pageWidth / 2, 11, { align: 'center' });
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(220, 230, 245);
+    doc.text(resume.headline, this.pageWidth / 2, 17.5, { align: 'center' });
+
+    doc.setFontSize(7.5);
+    doc.setTextColor(255, 255, 255);
+    const line1 = `${resume.contact.email}  ·  ${resume.contact.location}  ·  ${resume.contact.phone}`;
+    const line2 = resume.contact.links.map((l) => l.value).join('  ·  ');
+    doc.text(line1, this.pageWidth / 2, 24, { align: 'center' });
+    doc.text(line2, this.pageWidth / 2, 29, { align: 'center' });
+
+    y = bannerHeight + 8;
+
+    y = this.drawSectionTitle(doc, 'Summary', y);
+    y = this.drawWrappedText(doc, resume.summary, y, 9, this.muted, 4.1);
+    y += 3;
+
+    y = this.drawSectionTitle(doc, 'Work Experience', y);
+    for (const job of resume.experience) {
+      y = this.beginJob(doc, job, y);
+      y = this.drawJob(doc, job, y);
+    }
+
+    y += 1.5;
+    y = this.drawSectionTitle(doc, 'Education', y);
+    for (const entry of resume.education) {
+      y = this.ensureSpace(doc, y, 12);
+      y = this.drawEducation(doc, entry, y);
+    }
+
+    y += 1.5;
+    y = this.drawSectionTitle(doc, 'Skills', y);
+    for (const group of resume.skillGroups) {
+      y = this.ensureSpace(doc, y, 12);
+      y = this.drawSkillGroup(doc, group, y);
+    }
+
+    y += 1.5;
+    y = this.drawSectionTitle(doc, 'Featured Projects', y);
+    this.drawProjects(doc, resume.projects, y);
+  }
+
+  private drawHr(doc: JsPdfDoc, y: number): number {
+    y = this.ensureSpace(doc, y, 6);
+    doc.setDrawColor(30, 30, 30);
+    doc.setLineWidth(0.4);
+    doc.line(this.marginX, y, this.pageWidth - this.marginX, y);
+    return y + 5;
   }
 
   private drawHeader(doc: JsPdfDoc, resume: Resume, _y: number): number {

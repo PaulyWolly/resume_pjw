@@ -1,0 +1,106 @@
+<article class="doc">
+  <header class="doc__banner">
+    <h1>{{ resume().name }}</h1>
+    <p class="doc__headline">{{ resume().headline }}</p>
+    <p class="doc__contact">
+      <a [href]="'mailto:' + resume().contact.email">{{ resume().contact.email }}</a>
+      · {{ resume().contact.location }}
+      · {{ resume().contact.phone }}
+      @for (link of resume().contact.links; track link.href) {
+        ·
+        <a [href]="link.href" target="_blank" rel="noopener noreferrer">{{ link.value }}</a>
+      }
+    </p>
+  </header>
+
+  <section class="doc__section">
+    <h2>Summary</h2>
+    <p>{{ resume().summary }}</p>
+  </section>
+
+  <section class="doc__section">
+    <h2>Work Experience</h2>
+    @for (job of resume().experience; track job.company + job.startDate) {
+      <article class="doc-job">
+        <div class="doc-job__top">
+          <h3>{{ job.title }}</h3>
+          <span>{{ job.startDate }} – {{ job.endDate }}</span>
+        </div>
+        <p class="doc-job__company">{{ job.company }} ({{ job.arrangement }})</p>
+        <ul>
+          @for (item of job.highlights; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </article>
+    }
+  </section>
+
+  <section class="doc__section">
+    <h2>Education</h2>
+    @for (entry of resume().education; track entry.institution) {
+      <div class="doc-edu">
+        <div class="doc-edu__top">
+          <strong>{{ entry.focus }}</strong>
+          <span>{{ entry.startYear }} – {{ entry.endYear }}</span>
+        </div>
+        <p>{{ entry.institution }}, {{ entry.location }}</p>
+        @if (entry.note) {
+          <p class="doc-edu__note">{{ entry.note }}</p>
+        }
+      </div>
+    }
+  </section>
+
+  <section class="doc__section">
+    <h2>Skills</h2>
+    @for (group of resume().skillGroups; track group.category) {
+      <div class="doc-skills">
+        <h3>{{ group.category }}</h3>
+        <p>{{ group.skills.join(' · ') }}</p>
+      </div>
+    }
+  </section>
+
+  <section class="doc__section">
+    <h2>Featured Projects</h2>
+    <div class="doc-projects">
+      <div>
+        <h3>Angular</h3>
+        @for (project of angularProjects(); track project.githubUrl) {
+          <div class="doc-project">
+            <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">
+              {{ project.name }}
+            </a>
+            <p>{{ project.description }}</p>
+            <p class="doc-project__links">
+              <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
+              @if (project.liveUrl) {
+                ·
+                <a [href]="project.liveUrl" target="_blank" rel="noopener noreferrer">Live demo</a>
+              }
+            </p>
+          </div>
+        }
+      </div>
+      <div>
+        <h3>React</h3>
+        @for (project of reactProjects(); track project.githubUrl) {
+          <div class="doc-project">
+            <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">
+              {{ project.name }}
+            </a>
+            <p>{{ project.description }}</p>
+            <p class="doc-project__links">
+              <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
+              @if (project.liveUrl) {
+                ·
+                <a [href]="project.liveUrl" target="_blank" rel="noopener noreferrer">Live demo</a>
+              }
+            </p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+</article>

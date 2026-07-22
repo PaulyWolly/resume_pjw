@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Paul Welby — Resume (JobLeads / Masterclass Style)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --ink: #1a1a1a;
+        --muted: #444;
+        --rule: #222;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #e8e8e8;
+        color: var(--ink);
+        font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+        font-size: 11pt;
+        line-height: 1.35;
+      }
+
+      .page {
+        width: 8.5in;
+        min-height: 11in;
+        margin: 24px auto;
+        padding: 0.7in 0.75in 0.85in;
+        background: #fff;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+      }
+
+      .banner {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .banner h1 {
+        margin: 0;
+        font-size: 26pt;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      .banner .title {
+        margin: 4px 0 8px;
+        font-size: 12pt;
+        font-weight: 600;
+      }
+
+      .banner .contact {
+        font-size: 10pt;
+        color: var(--muted);
+      }
+
+      .banner .contact a {
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      hr {
+        border: none;
+        border-top: 1.5px solid var(--rule);
+        margin: 10px 0 12px;
+      }
+
+      h2 {
+        margin: 0 0 8px;
+        font-size: 12pt;
+        font-weight: 700;
+        text-transform: none;
+        letter-spacing: 0.01em;
+      }
+
+      .overview p {
+        margin: 0 0 8px;
+        text-align: justify;
+      }
+
+      .competencies {
+        margin: 0;
+        font-size: 10pt;
+        text-align: center;
+        color: var(--muted);
+      }
+
+      .job {
+        margin-bottom: 12px;
+      }
+
+      .job__top {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: baseline;
+      }
+
+      .job__role {
+        margin: 0;
+        font-size: 11pt;
+        font-weight: 700;
+      }
+
+      .job__dates {
+        white-space: nowrap;
+        font-size: 10pt;
+        color: var(--muted);
+      }
+
+      .job__company {
+        margin: 1px 0 4px;
+        font-size: 10.5pt;
+      }
+
+      .job ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .job li {
+        margin-bottom: 3px;
+      }
+
+      .edu {
+        margin-bottom: 8px;
+      }
+
+      .edu__row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .edu strong {
+        font-weight: 700;
+      }
+
+      .edu .note {
+        margin: 2px 0 0;
+        font-size: 10pt;
+        font-style: italic;
+        color: var(--muted);
+      }
+
+      .projects-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 4px;
+      }
+
+      .projects-table th {
+        text-align: left;
+        font-size: 10.5pt;
+        padding: 0 8px 6px 0;
+        border-bottom: 1px solid #bbb;
+      }
+
+      .projects-table td {
+        vertical-align: top;
+        width: 50%;
+        padding: 8px 10px 8px 0;
+        font-size: 10pt;
+      }
+
+      .projects-table .pname {
+        font-weight: 700;
+      }
+
+      .projects-table a {
+        color: #0b57d0;
+        text-decoration: none;
+      }
+
+      .hint {
+        max-width: 8.5in;
+        margin: 0 auto 8px;
+        padding: 10px 14px;
+        background: #fff8e6;
+        border: 1px solid #f0d78c;
+        font-size: 10pt;
+        font-family: Calibri, Arial, sans-serif;
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+        .hint {
+          display: none;
+        }
+        .page {
+          margin: 0;
+          box-shadow: none;
+          width: auto;
+          min-height: auto;
+          padding: 0.55in 0.65in;
+        }
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p class="hint">
+      <strong>Version 2 — JobLeads / Masterclass style.</strong>
+      Open in Chrome → Print → Save as PDF. Does not change your Angular/Netlify app.
+    </p>
+
+    <article class="page">
+      <header class="banner">
+        <h1>Paul Welby</h1>
+        <p class="title">Full Stack Developer | Angular | Python | Generative AI</p>
+        <p class="contact">
+          Fallbrook, CA 92028 &nbsp;|&nbsp; (619) 629-3770 &nbsp;|&nbsp;
+          <a href="mailto:pwelby@gmail.com">pwelby@gmail.com</a> &nbsp;|&nbsp;
+          <a href="https://www.linkedin.com/in/paulwelby">linkedin.com/in/paulwelby</a> &nbsp;|&nbsp;
+          <a href="https://github.com/PaulyWolly">github.com/PaulyWolly</a> &nbsp;|&nbsp;
+          <a href="https://i-am-paul.netlify.app">i-am-paul.netlify.app</a>
+        </p>
+      </header>
+
+      <hr />
+
+      <section class="overview">
+        <h2>Professional Overview</h2>
+        <p>
+          Highly accomplished Full Stack Developer with over 20 years of experience designing,
+          developing, and deploying sophisticated web applications. Expertise in Angular, React,
+          Python/Streamlit, and AI technologies including prompt engineering and LLM integration.
+          Proven ability to architect robust solutions, lead development teams, and mentor junior
+          engineers. Adept at leveraging modern frameworks and cloud platforms to deliver scalable,
+          high-performance, user-centric applications.
+        </p>
+        <p class="competencies">
+          Angular &nbsp;|&nbsp; React &nbsp;|&nbsp; TypeScript &nbsp;|&nbsp; Python &nbsp;|&nbsp;
+          Generative AI / LLMs &nbsp;|&nbsp; NgRx &nbsp;|&nbsp; Azure DevOps &nbsp;|&nbsp; AWS &nbsp;|&nbsp;
+          REST APIs &nbsp;|&nbsp; Agile / Scrum &nbsp;|&nbsp; Mentoring
+        </p>
+      </section>
+
+      <hr />
+
+      <section>
+        <h2>Professional Experience</h2>
+
+        <div class="job">
+          <div class="job__top">
+            <p class="job__role">Angular Developer</p>
+            <span class="job__dates">10/2025 – 06/2026</span>
+          </div>
+          <p class="job__company">
+            Ardent Mills (Contractor / Remote · HonorVet Technologies)
+          </p>
+          <ul>
+            <li>
+              Led architectural migration of enterprise Core and Prism web applications from Angular
+              v14 to v20, refactoring legacy UI to Material Design Components (MDC).
+            </li>
+            <li>
+              Engineered custom CSS and component overrides to mitigate MDC breaking changes while
+              preserving visual and functional parity.
+            </li>
+            <li>
+              Improved scalability and load times with modular components, lazy loading, and NgRx
+              state management.
+            </li>
+            <li>
+              Built Azure DevOps CI/CD pipelines to accelerate testing, staging, and deployment for
+              Agile teams.
+            </li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job__top">
+            <p class="job__role">
+              Angular/Python Developer · Full Stack – UX/UI Developer (Generative AI)
+            </p>
+            <span class="job__dates">11/2023 – 05/2025</span>
+          </div>
+          <p class="job__company">
+            ThermoFisher Scientific (Contractor / Hybrid · Insight Global)
+          </p>
+          <ul>
+            <li>
+              Architected and deployed an enterprise Generative AI Portal with Angular, TypeScript,
+              and AWS for secure LLM use in a regulated life sciences context.
+            </li>
+            <li>
+              Built Python POCs with Streamlit, Flask, and FastAPI; customized Flowise for agentic
+              workflows and production AI tools.
+            </li>
+            <li>
+              Integrated Angular/Node pipelines with Azure Cognitive Services, Azure OpenAI, and
+              OpenAI LLMs; extended Flowise with Neo4j and GraphQL NLP chatflows.
+            </li>
+            <li>
+              Delivered data layers with PostgreSQL and MongoDB via REST APIs; authored technical
+              documentation in Agile/Scrum teams.
+            </li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job__top">
+            <p class="job__role">Senior Angular Developer</p>
+            <span class="job__dates">06/2023 – 09/2023</span>
+          </div>
+          <p class="job__company">Dept. of Education (Contractor / Remote · Innosoft)</p>
+          <ul>
+            <li>
+              Built responsive Angular/TypeScript applications with component-based design, lazy
+              loading, and NgRx.
+            </li>
+            <li>
+              Drove Agile delivery through sprint planning, stand-ups, and retrospectives; managed
+              documentation and Git workflows.
+            </li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job__top">
+            <p class="job__role">Lead Angular Developer</p>
+            <span class="job__dates">04/2022 – 11/2022</span>
+          </div>
+          <p class="job__company">Bank of America (Contractor / Remote · Insight Global)</p>
+          <ul>
+            <li>
+              Enhanced “Erica,” Bank of America’s AI Chatbot/Banker Assist app, using Angular 12,
+              TypeScript, and WebSockets.
+            </li>
+            <li>
+              Mentored juniors, led code reviews, and delivered scalable UI with lazy loading, NgRx,
+              and secure REST integrations.
+            </li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job__top">
+            <p class="job__role">Lead Software Developer, SQL Developer</p>
+            <span class="job__dates">06/2021 – 10/2021</span>
+          </div>
+          <p class="job__company">Harmony Technology Services (FTE / Remote)</p>
+          <ul>
+            <li>
+              Integrated MS Access/VBA front ends with SQL Server; wrote high-performance SQL,
+              stored procedures, and secure REST APIs.
+            </li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job__top">
+            <p class="job__role">Front-End Software Developer</p>
+            <span class="job__dates">06/2019 – 04/2020</span>
+          </div>
+          <p class="job__company">Accumen, Inc. (FTE / Onsite)</p>
+          <ul>
+            <li>
+              Authored company Style Guide; converted Axure prototypes to Angular; built Tableau-
+              integrated visualizations and WCAG-compliant UI.
+            </li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job__top">
+            <p class="job__role">Software Engineer</p>
+            <span class="job__dates">10/2017 – 03/2019</span>
+          </div>
+          <p class="job__company">Medimpact (Contractor / Onsite · Apex Systems)</p>
+          <ul>
+            <li>
+              Co-engineered pharmacy claims management app; modernized legacy modules toward Angular
+              7 with Axure prototypes and high-performance APIs.
+            </li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job__top">
+            <p class="job__role">Senior Web Developer / Engineer</p>
+            <span class="job__dates">06/2015 – 11/2016</span>
+          </div>
+          <p class="job__company">S.A.I.C. · Verizon Networkfleet (Contractor / Remote)</p>
+          <ul>
+            <li>
+              Delivered responsive HTML5/CSS3/JavaScript applications with Angular, React, and Vue;
+              collaborated with UX on pixel-perfect, accessible interfaces.
+            </li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job__top">
+            <p class="job__role">Engineer / Programmer Analyst / Web Developer</p>
+            <span class="job__dates">12/2009 – 10/2014</span>
+          </div>
+          <p class="job__company">Qualcomm (FTE / Onsite)</p>
+          <ul>
+            <li>
+              Designed and developed interactive web applications with modern front-end libraries;
+              ensured cross-browser and mobile-responsive experiences.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <hr />
+
+      <section>
+        <h2>Education</h2>
+        <div class="edu">
+          <div class="edu__row">
+            <div>
+              <strong>University of California – Davis</strong> — Microbiology, Computer Science
+              coursework
+            </div>
+            <span>1997 – 1999</span>
+          </div>
+        </div>
+        <div class="edu">
+          <div class="edu__row">
+            <div>
+              <strong>Pennsylvania State University, DuBois</strong> — Liberal Arts coursework
+            </div>
+            <span>1980 – 1982</span>
+          </div>
+          <p class="note">Equivalent of an associate degree with 192 college units</p>
+        </div>
+      </section>
+
+      <hr />
+
+      <section>
+        <h2>Featured Projects</h2>
+        <table class="projects-table">
+          <thead>
+            <tr>
+              <th>Angular</th>
+              <th>React</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="pname">Angular Recipe Book using NgRx</div>
+                <div>
+                  <a href="https://github.com/PaulyWolly/recipe-book-ngrx-v15b">GitHub</a>
+                  ·
+                  <a href="https://recipe-book-ngrx-v15b.netlify.app/auth">Live demo</a>
+                </div>
+              </td>
+              <td>
+                <div class="pname">React Task Manager</div>
+                <div>
+                  <a href="https://github.com/PaulyWolly/react-redux-firestore">GitHub</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="pname">Angular Sandbox II</div>
+                <div>
+                  <a href="https://github.com/PaulyWolly/ng14_CRUD-pucp">GitHub</a>
+                  ·
+                  <a href="https://ng14-crud-pucp-v2.netlify.app/">Live demo</a>
+                </div>
+              </td>
+              <td>
+                <div class="pname">React Tutorial Library</div>
+                <div>
+                  <a href="https://github.com/PaulyWolly/react-hooks-firestore-crud">GitHub</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="pname">MEAN Profiling App</div>
+                <div>
+                  <a href="https://github.com/PaulyWolly/My-Profiling-App_v17">GitHub</a>
+                  ·
+                  <a href="https://my-profiling-app-v17-1.onrender.com/">Live demo</a>
+                </div>
+              </td>
+              <td>
+                <div class="pname">Auth0 React Sample</div>
+                <div>
+                  <a href="https://github.com/PaulyWolly/auth0-react-sample">GitHub</a>
+                  ·
+                  <a href="https://pw-auth0-react-sample.netlify.app/">Live demo</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </article>
+  </body>
+</html>
