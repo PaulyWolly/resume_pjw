@@ -107,19 +107,17 @@ export class PdfService {
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(8);
     doc.setTextColor(...this.muted);
-    const contactBits = [
+    const contactLine = [
       resume.contact.location,
       resume.contact.email,
       resume.contact.phone,
-      ...resume.contact.links.map((l) => l.value),
-    ];
-    const contactLine = contactBits.join('  |  ');
-    const contactLines = doc.splitTextToSize(contactLine, this.contentWidth) as string[];
-    for (const line of contactLines) {
-      doc.text(line, this.pageWidth / 2, y, { align: 'center' });
-      y += 3.5;
-    }
-    y += 2;
+    ].join('  |  ');
+    doc.text(contactLine, this.pageWidth / 2, y, { align: 'center' });
+    y += 3.5;
+
+    const linksLine = resume.contact.links.map((l) => l.value).join('  |  ');
+    doc.text(linksLine, this.pageWidth / 2, y, { align: 'center' });
+    y += 5;
 
     y = this.drawHr(doc, y);
 

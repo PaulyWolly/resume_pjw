@@ -6,8 +6,12 @@
       <a [href]="'mailto:' + resume().contact.email">{{ resume().contact.email }}</a>
       · {{ resume().contact.location }}
       · {{ resume().contact.phone }}
-      @for (link of resume().contact.links; track link.href) {
-        ·
+    </p>
+    <p class="doc__contact doc__contact--links">
+      @for (link of resume().contact.links; track link.href; let i = $index) {
+        @if (i > 0) {
+          ·
+        }
         <a [href]="link.href" target="_blank" rel="noopener noreferrer">{{ link.value }}</a>
       }
     </p>
