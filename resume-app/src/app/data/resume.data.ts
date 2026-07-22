@@ -2,7 +2,7 @@ import { Resume } from '../models/resume.model';
 
 export const RESUME: Resume = {
   name: 'Paul Welby',
-  headline: 'Full Stack Developer · Angular · Python · Generative AI',
+  headline: 'Full Stack Developer · Angular · React · Python · Generative AI',
   contact: {
     email: 'pwelby@gmail.com',
     phone: '(619) 629-3770',
