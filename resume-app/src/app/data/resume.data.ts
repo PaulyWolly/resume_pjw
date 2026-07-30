@@ -46,6 +46,7 @@ export const RESUME: Resume = {
       highlights: [
         'Led the architectural migration of enterprise Core and Prism web applications from Angular v14 to v20, programmatically refactoring the legacy UI codebase to adopt v15 Material Design Components (MDC).',
         'Engineered custom CSS and component overrides to successfully mitigate breaking changes injected by, the MDC migration, maintaining strict visual and functional parity across all application layouts.',
+        'Integrated .NET v8 services and APIs to access and deliver backend data required by the Angular front-end applications.',
         'Optimized application scalability and load times during the upgrade by designing modular component structures, implementing lazy loading, and refactoring NgRx state management.',
         'Streamlined development lifecycles by engineering automated Azure DevOps CI/CD pipelines to accelerate testing, staging, and deployment workflows for cross-functional Agile teams.',
       ],
@@ -64,7 +65,6 @@ export const RESUME: Resume = {
         'Integrated full-stack AI pipelines by connecting the Angular front-end and Node/Express backend services with Azure Cognitive Services, Azure OpenAI, and native OpenAI LLMs.',
         'Extended Flowise capabilities by building Neo4j and GraphQL NLP chatflow integrations to drive advanced, knowledge-graph-based AI interactions.',
         'Developed robust data layers using PostgreSQL and MongoDB (leveraging Multer for image storage) managed via secure, high-performance REST APIs.',
-        'Authored comprehensive technical documentation (specifications, API schemas, user guides) while collaborating actively across Agile/Scrum cross-functional teams.',
       ],
     },
     {
@@ -78,7 +78,6 @@ export const RESUME: Resume = {
         'Architected robust front-end systems by implementing component-based design, lazy loading, and advanced enterprise state management using NgRx.',
         'Ensured cross-browser compatibility and fluid responsive design, optimizing complex web interfaces to deliver seamless accessibility across diverse device types.',
         'Drove Agile development execution by actively contributing to Scrum ceremonies, sprint planning, daily stand-ups, and retrospectives to accelerate project delivery timelines.',
-        'Managed end-to-end project documentation, ensuring all technical specifications, system architectures, and user guides were precisely tracked alongside Git-based version control workflows.',
       ],
     },
     {
@@ -93,7 +92,6 @@ export const RESUME: Resume = {
         'Architected scalable UI components using lazy loading, code splitting, image optimization, and NgRx state management to ensure rapid data binding and exceptional application reliability.',
         'Enforced enterprise coding standards by leading comprehensive code reviews, updating complex UI layouts, and guaranteeing strict cross-browser compatibility.',
         'Integrated secure RESTful APIs to facilitate seamless asynchronous data exchange and synchronization between complex front-end interfaces and back-end systems.',
-        'Championed Agile/Scrum delivery, actively driving sprint planning, daily stand-ups, and cross-functional team collaborations to deliver features on schedule.',
       ],
     },
     {
@@ -107,7 +105,6 @@ export const RESUME: Resume = {
         'Optimized relational database performance by writing complex, high-performance SQL queries, stored procedures, and data-triggering scripts to manage high-volume application data.',
         'Designed and implemented secure RESTful APIs to bridge communication gaps, streamline data exchange, and ensure real-time synchronization between front-end interfaces and external enterprise systems.',
         'Enforced application security and user role-management frameworks, building customized form security layers to control data access and prevent unauthorized form submissions.',
-        'Collaborated closely with cross-functional teams within an Agile framework, contributing heavily to sprint planning, resource allocation, daily stand-ups, and milestone tracking.',
       ],
     },
     {
@@ -120,7 +117,6 @@ export const RESUME: Resume = {
         'Established company-wide design standards by authoring the primary Style Guide for web-based applications, ensuring consistent UI layouts, styling guidelines, and brand alignment.',
         'Translated interactive wireframes and UX prototypes (designed in Axure-RP) into responsive, pixel-perfect front-end code using Angular, HTML5, CSS3, and JavaScript.',
         'Engineered dynamic data visualizations by building custom Angular components integrated with Tableau reporting tools, delivering seamless data-point insights from PostgreSQL databases.',
-        'Optimized application accessibility and compliance, implementing best-practice user interface architectures that adhered to WCAG standards.',
         'Managed diverse relational database connectivity, writing efficient SQL architectures to handle data feeds across PostgreSQL, MySQL, and Microsoft SQL Server (MSSQL).',
       ],
     },
@@ -135,7 +131,6 @@ export const RESUME: Resume = {
         'Modernized legacy systems by architecting interactive prototypes that served as the foundation for an upgraded Angular 7 application, replacing outdated EFS software modules.',
         'Collaborated with business analysts, QA, and development teams to translate complex pharmacy claims requirements into functional Axure RP prototypes and production-ready UI workflows.',
         'Enforced robust data handling practices by designing high-performance RESTful APIs and optimizing database architectures to ensure secure, real-time data integration.',
-        'Conducted algorithmic analysis and performance profiling to systematically identify, isolate, and eliminate critical application bottlenecks.',
       ],
     },
     {
@@ -147,7 +142,6 @@ export const RESUME: Resume = {
       highlights: [
         'Modernized a legacy government-contract application with an HTML5/CSS3/Angular/Bootstrap face-lift, expanding functionality while preserving core workflows.',
         'Integrated front-end Angular modules with MongoDB-backed services running on virtual machines for the upgraded application stack.',
-        'Collaborated with engineering stakeholders to deliver responsive UI improvements and increased usability for the remodeled application.',
       ],
     },
     {
@@ -160,7 +154,6 @@ export const RESUME: Resume = {
         'Re-branded and redesigned UI modules for the Verizon Networkfleet fleet-management application, including CSS/CSS3 styling, branding, color/font updates, and bug fixes for customer-facing and internal Customer Service apps.',
         'Led responsive-layout restructuring of desktop-era pages using CSS3 media queries so content could adapt across browsers and devices (Firefox, Chrome, IE).',
         'Built and iterated on new pages and modules in two-week Agile/Scrum sprints against a WebLogic 12 backend with Oracle data sources and SVN source control.',
-        'Authored layout comps in Photoshop/Illustrator and implemented styles with Sass plus Grunt/Gulp task runners; code was pre-screened in Crucible before commit.',
       ],
     },
     {
@@ -174,7 +167,6 @@ export const RESUME: Resume = {
         'Implemented PHP web services and SQL against Oracle 9i/10g/11g, MS SQL Server, and MySQL for portal data access and administration.',
         'Administered SharePoint 2007/2010 sites with custom workflows, libraries, lists, web parts, and SharePoint Designer automations.',
         'Created a stand-alone AngularJS 1.2 video-watermarking application for Qualcomm Legal (HTML5/CSS3, ffmpeg processing, MySQL event logging).',
-        'Delivered Java/Struts and JSP components for production suites, plus JUnit/Selenium coverage and Oracle ERD design in Visio.',
       ],
     },
   ],
@@ -312,14 +304,14 @@ export const RESUME: Resume = {
     {
       name: 'Angular Recipe Book using NgRx',
       stack: 'Angular',
-      description: 'Recipe book application built with Angular and NgRx state management',
+      description: 'Recipe book application w/ Angular, NgRx',
       githubUrl: 'https://github.com/PaulyWolly/recipe-book-ngrx-v15b',
       liveUrl: 'https://recipe-book-ngrx-v15b.netlify.app/auth',
     },
     {
       name: 'Angular Sandbox II',
       stack: 'Angular',
-      description: 'Angular 14 CRUD sandbox with routing, Material, Bootstrap, and dark mode',
+      description: 'Angular 14 CRUD w/ routing, Angular Material, Bootstrap, dark mode',
       githubUrl: 'https://github.com/PaulyWolly/ng14_CRUD-pucp',
       liveUrl: 'https://ng14-crud-pucp-v2.netlify.app/',
     },
@@ -327,7 +319,7 @@ export const RESUME: Resume = {
       name: 'MEAN Profiling App',
       stack: 'Angular',
       description:
-        'Auth0/Google auth, web sockets, chat, and more — Angular v17 profiling app',
+        'Auth0/Google, JWT, web sockets, "live" chat, profiles, image/video uploading',
       githubUrl: 'https://github.com/PaulyWolly/My-Profiling-App_v17',
       liveUrl: 'https://my-profiling-app-v17-1.onrender.com/',
     },
