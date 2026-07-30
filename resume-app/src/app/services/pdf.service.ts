@@ -397,25 +397,49 @@ export class PdfService {
   }
 
   /**
-   * Keep job title + company with at least the first bullet.
-   * Avoids orphaning a heading alone at the bottom of a page.
+   * Keep an entire job block on one page when it fits.
+   * If the job is taller than a page, fall back to header + first bullet.
    */
   private beginJob(
     doc: JsPdfDoc,
     job: Resume['experience'][number],
     y: number,
   ): number {
+    const fullHeight = this.measureJobHeight(doc, job);
+    const usableHeight = this.pageHeight - this.marginTop - this.marginBottom;
+
+    if (fullHeight <= usableHeight) {
+      // Small pad so rounding / font metrics don't still clip the last bullet
+      return this.ensureSpace(doc, y, fullHeight + 2);
+    }
+
+    // Oversized job: at least keep title/company with the first bullet
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8.5);
+    const firstBullet = job.highlights[0] ?? '';
+    const lines = doc.splitTextToSize(firstBullet, this.contentWidth - 3) as string[];
+    const firstBulletHeight = Math.max(lines.length, 1) * 3.9 + 0.7;
+    return this.ensureSpace(doc, y, 4.2 + 4.8 + firstBulletHeight);
+  }
+
+  /** Height of title + company + all bullets (no trailing between-job gap). */
+  private measureJobHeight(
+    doc: JsPdfDoc,
+    job: Resume['experience'][number],
+  ): number {
+    const lineHeight = 3.9;
+    const textWidth = this.contentWidth - 3;
+    let height = 4.2 + 4.8;
+
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(8.5);
 
-    const firstBullet = job.highlights[0] ?? '';
-    const lines = doc.splitTextToSize(firstBullet, this.contentWidth - 3) as string[];
-    const lineHeight = 3.9;
-    const firstBulletHeight = Math.max(lines.length, 1) * lineHeight + 0.7;
+    for (const highlight of job.highlights) {
+      const lines = doc.splitTextToSize(highlight, textWidth) as string[];
+      height += Math.max(lines.length, 1) * lineHeight + 0.7;
+    }
 
-    // title (4.2) + company (4.8) + first bullet
-    const needed = 4.2 + 4.8 + firstBulletHeight;
-    return this.ensureSpace(doc, y, needed);
+    return height;
   }
 
   private drawJob(
