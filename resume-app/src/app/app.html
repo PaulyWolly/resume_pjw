@@ -39,18 +39,34 @@
         ✦ Letter of Recommendation
       </button>
 
-      <button
-        class="toolbar-btn"
-        type="button"
-        (click)="downloadPdf()"
-        [disabled]="generating()"
-      >
-        @if (generating()) {
-          Generating PDF…
-        } @else {
-          ↓ Download Resume {{ version() }} PDF
-        }
-      </button>
+      <div class="download-split" role="group" aria-label="Download resume">
+        <span class="download-split__prefix">↓ Download</span>
+        <button
+          type="button"
+          class="download-split__option"
+          (click)="downloadPdf()"
+          [disabled]="exporting()"
+        >
+          @if (generatingPdf()) {
+            PDF…
+          } @else {
+            PDF
+          }
+        </button>
+        <span class="download-split__sep" aria-hidden="true">|</span>
+        <button
+          type="button"
+          class="download-split__option"
+          (click)="downloadDocx()"
+          [disabled]="exporting()"
+        >
+          @if (generatingDocx()) {
+            WORD…
+          } @else {
+            WORD
+          }
+        </button>
+      </div>
     </div>
   </div>
 

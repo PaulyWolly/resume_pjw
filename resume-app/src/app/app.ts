@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, HostListener, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  HostListener,
+  inject,
+  signal,
+} from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Header } from './components/header/header';
 import { Experience } from './components/experience/experience';
@@ -8,6 +15,7 @@ import { Resume2 } from './components/resume2/resume2';
 import { Resume3 } from './components/resume3/resume3';
 import { RESUME } from './data/resume.data';
 import { ResumeVersion } from './models/resume-version';
+import { DocxService } from './services/docx.service';
 import { PdfService } from './services/pdf.service';
 
 @Component({
@@ -21,9 +29,14 @@ import { PdfService } from './services/pdf.service';
 export class App {
   protected readonly resume = RESUME;
   private readonly pdfService = inject(PdfService);
+  private readonly docxService = inject(DocxService);
   private readonly sanitizer = inject(DomSanitizer);
 
-  protected readonly generating = this.pdfService.generating;
+  protected readonly generatingPdf = this.pdfService.generating;
+  protected readonly generatingDocx = this.docxService.generating;
+  protected readonly exporting = computed(
+    () => this.generatingPdf() || this.generatingDocx(),
+  );
   protected readonly recommendationOpen = signal(false);
   /** Default = classic navy-banner layout (header / experience / skills / projects). */
   protected readonly version = signal<ResumeVersion>(1);
@@ -39,8 +52,14 @@ export class App {
 
   protected async downloadPdf(): Promise<void> {
     const v = this.version();
-    const filename = `PaulWelby_Resume_v${v}_Angular-Python-AI_7-11-2026.pdf`;
+    const filename = `PaulWelby_Resume_v${v}_Angular-Python-AI.pdf`;
     await this.pdfService.download(this.resume, filename, v);
+  }
+
+  protected async downloadDocx(): Promise<void> {
+    const v = this.version();
+    const filename = `PaulWelby_Resume_v${v}_Angular-Python-AI.docx`;
+    await this.docxService.download(this.resume, filename, v);
   }
 
   protected openRecommendation(): void {

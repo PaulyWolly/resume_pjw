@@ -4,41 +4,29 @@
     <p class="resume-header__headline">{{ headline() }}</p>
 
     <div class="resume-header__contact">
-      <div class="resume-header__contact-row">
-        <a class="contact-item" [href]="'mailto:' + contact().email">
-          <span class="contact-item__icon" aria-hidden="true">✉</span>
-          {{ contact().email }}
-        </a>
+      <p class="resume-header__contact-line">
+        <a [href]="'mailto:' + contact().email">{{ contact().email }}</a>
+        <span class="resume-header__sep" aria-hidden="true">|</span>
         <button
           type="button"
-          class="contact-item contact-item--button"
+          class="resume-header__location"
           (click)="openMap()"
           title="View on Google Maps"
         >
-          <span class="contact-item__icon" aria-hidden="true">🏠</span>
           {{ contact().location }}
         </button>
-        <a class="contact-item" [href]="phoneHref(contact().phone)">
-          <span class="contact-item__icon" aria-hidden="true">📞</span>
-          {{ contact().phone }}
-        </a>
-      </div>
+        <span class="resume-header__sep" aria-hidden="true">|</span>
+        <a [href]="phoneHref(contact().phone)">{{ contact().phone }}</a>
+      </p>
 
-      <div class="resume-header__contact-row">
-        @for (link of contact().links; track link.href) {
-          <a class="contact-item" [href]="link.href" target="_blank" rel="noopener noreferrer">
-            <span class="contact-item__icon" aria-hidden="true">
-              @switch (link.icon) {
-                @case ('linkedin') { in }
-                @case ('github') { gh }
-                @case ('globe') { 🌐 }
-                @default { ↗ }
-              }
-            </span>
-            {{ link.value }}
-          </a>
+      <p class="resume-header__contact-line">
+        @for (link of contact().links; track link.href; let i = $index) {
+          @if (i > 0) {
+            <span class="resume-header__sep" aria-hidden="true">|</span>
+          }
+          <a [href]="link.href" target="_blank" rel="noopener noreferrer">{{ link.value }}</a>
         }
-      </div>
+      </p>
     </div>
   </div>
 
@@ -58,9 +46,7 @@
       (click)="$event.stopPropagation()"
     >
       <div class="map-modal__header">
-        <span class="map-modal__title">
-          <span aria-hidden="true">🏠</span> {{ contact().location }}
-        </span>
+        <span class="map-modal__title">{{ contact().location }}</span>
         <button
           type="button"
           class="map-modal__close"
@@ -86,7 +72,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          Open in Google Maps ↗
+          Open in Google Maps
         </a>
       </div>
     </div>

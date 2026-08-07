@@ -28,55 +28,46 @@
 .resume-header__headline {
   margin: 0 0 0.85rem;
   color: rgba(255, 255, 255, 0.85);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .resume-header__contact {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.45rem;
-}
-
-.resume-header__contact-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.65rem 1.25rem;
-}
-
-.contact-item {
-  display: inline-flex;
-  align-items: center;
   gap: 0.35rem;
-  font-size: 0.82rem;
+}
+
+.resume-header__contact-line {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.45;
   color: rgba(255, 255, 255, 0.92);
-  transition: color 0.15s ease;
+}
 
-  &:hover {
-    color: var(--accent);
-  }
+.resume-header__contact-line a,
+.resume-header__location {
+  color: #fff;
+  text-decoration: none;
+}
 
-  &--button {
-    font-family: inherit;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-  }
+.resume-header__contact-line a:hover,
+.resume-header__location:hover {
+  text-decoration: underline;
+}
 
-  &__icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.12);
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
+.resume-header__sep {
+  margin: 0 0.45rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.resume-header__location {
+  font: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #fff;
 }
 
 .resume-header__summary {

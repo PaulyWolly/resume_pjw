@@ -7,7 +7,7 @@
 .toolbar {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-bottom: 1rem;
@@ -18,6 +18,7 @@
   flex-wrap: wrap;
   gap: 0.65rem;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .version-switcher {
@@ -103,6 +104,57 @@
   &--compact {
     padding: 0.4rem 0.9rem;
     font-size: 0.8rem;
+  }
+}
+
+.download-split {
+  display: inline-flex;
+  align-items: center;
+  background: var(--navy-700);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.download-split__prefix {
+  padding: 0.55rem 0.35rem 0.55rem 1.1rem;
+  white-space: nowrap;
+}
+
+.download-split__sep {
+  opacity: 0.55;
+  user-select: none;
+}
+
+.download-split__option {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  padding: 0.55rem 0.7rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:first-of-type {
+    padding-left: 0.45rem;
+  }
+
+  &:last-of-type {
+    padding-right: 1.1rem;
+  }
+
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: wait;
   }
 }
 

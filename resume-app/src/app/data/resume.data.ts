@@ -2,11 +2,11 @@ import { Resume } from '../models/resume.model';
 
 export const RESUME: Resume = {
   name: 'Paul Welby',
-  headline: 'Full Stack Developer · Angular · React · Python · Generative AI',
+  headline: 'Full Stack Developer | Angular | React | Python | Generative AI',
   contact: {
     email: 'pwelby@gmail.com',
     phone: '(619) 629-3770',
-    location: 'Fallbrook, 92028, United States',
+    location: 'Fallbrook, CA 92028',
     links: [
       {
         label: 'LinkedIn',

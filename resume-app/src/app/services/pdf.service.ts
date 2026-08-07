@@ -3,7 +3,6 @@ import { Resume } from '../models/resume.model';
 import { ResumeVersion } from '../models/resume-version';
 
 type JsPdfDoc = import('jspdf').jsPDF;
-type IconKind = 'email' | 'home' | 'phone' | 'linkedin' | 'github' | 'globe';
 
 /**
  * Builds a text PDF for the selected resume version (1 / 2 / 3).
@@ -203,8 +202,8 @@ export class PdfService {
 
     doc.setFontSize(7.5);
     doc.setTextColor(255, 255, 255);
-    const line1 = `${resume.contact.email}  ·  ${resume.contact.location}  ·  ${resume.contact.phone}`;
-    const line2 = resume.contact.links.map((l) => l.value).join('  ·  ');
+    const line1 = `${resume.contact.email}  |  ${resume.contact.location}  |  ${resume.contact.phone}`;
+    const line2 = resume.contact.links.map((l) => l.value).join('  |  ');
     doc.text(line1, this.pageWidth / 2, 24, { align: 'center' });
     doc.text(line2, this.pageWidth / 2, 29, { align: 'center' });
 
@@ -248,7 +247,7 @@ export class PdfService {
   }
 
   private drawHeader(doc: JsPdfDoc, resume: Resume, _y: number): number {
-    const bannerHeight = 38;
+    const bannerHeight = 34;
     doc.setFillColor(...this.navy);
     doc.rect(0, 0, this.pageWidth, bannerHeight, 'F');
 
@@ -262,122 +261,14 @@ export class PdfService {
     doc.setTextColor(220, 230, 245);
     doc.text(resume.headline, this.pageWidth / 2, 17.5, { align: 'center' });
 
-    doc.setFontSize(8);
+    doc.setFontSize(7.5);
     doc.setTextColor(255, 255, 255);
+    const line1 = `${resume.contact.email}  |  ${resume.contact.location}  |  ${resume.contact.phone}`;
+    const line2 = resume.contact.links.map((l) => l.value).join('  |  ');
+    doc.text(line1, this.pageWidth / 2, 24, { align: 'center' });
+    doc.text(line2, this.pageWidth / 2, 29, { align: 'center' });
 
-    const mapsUrl = `https://maps.google.com/maps?q=${encodeURIComponent(resume.contact.location)}`;
-    const phoneHref = `tel:${resume.contact.phone.replace(/[^0-9+]/g, '')}`;
-
-    this.drawCenteredLinkRow(
-      doc,
-      [
-        { text: resume.contact.email, url: `mailto:${resume.contact.email}`, icon: 'email' },
-        { text: resume.contact.location, url: mapsUrl, icon: 'home' },
-        { text: resume.contact.phone, url: phoneHref, icon: 'phone' },
-      ],
-      25.5,
-    );
-
-    this.drawCenteredLinkRow(
-      doc,
-      resume.contact.links.map((link) => ({
-        text: link.value,
-        url: link.href,
-        icon: link.icon as 'linkedin' | 'github' | 'globe',
-      })),
-      32,
-    );
-
-    // ~20px extra breathing room under the navy banner before Summary
-    return bannerHeight + 11;
-  }
-
-  /** Draws a centered row of icon + clickable text items separated by · */
-  private drawCenteredLinkRow(
-    doc: JsPdfDoc,
-    items: Array<{ text: string; url: string; icon: IconKind }>,
-    y: number,
-  ): void {
-    const sep = '  ·  ';
-    const iconSize = 2.6;
-    const iconGap = 1.2;
-    const sepWidth = doc.getTextWidth(sep);
-
-    const itemWidths = items.map((item) => {
-      return iconSize + iconGap + doc.getTextWidth(item.text);
-    });
-    const totalWidth =
-      itemWidths.reduce((sum, w) => sum + w, 0) + sepWidth * (items.length - 1);
-
-    let x = (this.pageWidth - totalWidth) / 2;
-
-    items.forEach((item, index) => {
-      this.drawIcon(doc, item.icon, x, y - 1.7, iconSize);
-      x += iconSize + iconGap;
-
-      doc.setTextColor(255, 255, 255);
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(8);
-      doc.textWithLink(item.text, x, y, { url: item.url });
-      x += doc.getTextWidth(item.text);
-
-      if (index < items.length - 1) {
-        doc.text(sep, x, y);
-        x += sepWidth;
-      }
-    });
-  }
-
-  private drawIcon(doc: JsPdfDoc, kind: IconKind, x: number, y: number, size: number): void {
-    doc.setDrawColor(255, 255, 255);
-    doc.setFillColor(255, 255, 255);
-    doc.setLineWidth(0.25);
-    doc.setTextColor(255, 255, 255);
-
-    switch (kind) {
-      case 'email': {
-        // Envelope
-        doc.rect(x, y + 0.4, size, size * 0.7, 'S');
-        doc.line(x, y + 0.4, x + size / 2, y + size * 0.75);
-        doc.line(x + size, y + 0.4, x + size / 2, y + size * 0.75);
-        break;
-      }
-      case 'home': {
-        // House
-        const mid = x + size / 2;
-        doc.line(x, y + size * 0.45, mid, y);
-        doc.line(mid, y, x + size, y + size * 0.45);
-        doc.rect(x + size * 0.2, y + size * 0.45, size * 0.6, size * 0.5, 'S');
-        break;
-      }
-      case 'phone': {
-        // Simple handset
-        doc.roundedRect(x + 0.4, y, size * 0.55, size, 0.4, 0.4, 'S');
-        break;
-      }
-      case 'linkedin': {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(5.5);
-        doc.text('in', x + 0.15, y + size * 0.75);
-        break;
-      }
-      case 'github': {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(5);
-        doc.text('gh', x, y + size * 0.75);
-        break;
-      }
-      case 'globe': {
-        // Globe: circle + meridians
-        const cx = x + size / 2;
-        const cy = y + size / 2;
-        const r = size / 2;
-        doc.circle(cx, cy, r, 'S');
-        doc.ellipse(cx, cy, r * 0.4, r, 'S');
-        doc.line(x, cy, x + size, cy);
-        break;
-      }
-    }
+    return bannerHeight + 10;
   }
 
   private drawSectionTitle(doc: JsPdfDoc, title: string, y: number): number {
