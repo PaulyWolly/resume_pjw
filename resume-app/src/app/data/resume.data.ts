@@ -163,10 +163,10 @@ export const RESUME: Resume = {
       startDate: '12/2009',
       endDate: '10/2014',
       highlights: [
-        'Built front-end experiences with HTML5, JavaScript, jQuery, AngularJS 1.x, and Sencha ExtJS (2.0–3.3), plus Adobe Flash and ASP.NET/CSS as needed.',
+        'Built front-end experiences with HTML5, JavaScript, jQuery, and Sencha ExtJS (2.0–3.3), plus Adobe Flash and ASP.NET/CSS as needed.',
         'Implemented PHP web services and SQL against Oracle 9i/10g/11g, MS SQL Server, and MySQL for portal data access and administration.',
         'Administered SharePoint 2007/2010 sites with custom workflows, libraries, lists, web parts, and SharePoint Designer automations.',
-        'Created a stand-alone AngularJS 1.2 video-watermarking application for Qualcomm Legal (HTML5/CSS3, ffmpeg processing, MySQL event logging).',
+        'Later in this role, created a stand-alone AngularJS 1.2 video-watermarking application for Qualcomm Legal (HTML5/CSS3, ffmpeg processing, MySQL event logging).',
       ],
     },
   ],
