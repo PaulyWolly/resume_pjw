@@ -29,7 +29,7 @@ export const RESUME: Resume = {
     ],
   },
   summary:
-    'Highly accomplished Full Stack Developer with over 20 years of experience in designing, ' +
+    'Highly accomplished Full Stack Developer with over 15 years of experience in designing, ' +
     'developing, and deploying sophisticated web applications. Expertise in Angular, React, ' +
     'Python/Streamlit, and AI technologies, including prompt engineering and LLM integration. ' +
     'Proven ability to architect robust solutions, lead development teams, and mentor junior ' +
