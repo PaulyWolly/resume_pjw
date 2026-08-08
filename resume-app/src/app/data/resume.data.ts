@@ -331,20 +331,20 @@ export const RESUME: Resume = {
       githubUrl: 'https://github.com/PaulyWolly/react-redux-firestore',
     },
     {
-      name: 'MERN-MultiChat',
-      stack: 'React',
-      description:
-        'Multi-feature AI chat (React, Node, MongoDB, Claude/OpenAI, YouTube)',
-      githubUrl: 'https://github.com/PaulyWolly/MERN-MultiChat',
-      liveUrl: 'https://mern-multichat.onrender.com',
-    },
-    {
       name: 'Auth0 React Sample',
       stack: 'React',
       description:
         'Auth0, protected routes, active menu styling, loading states',
       githubUrl: 'https://github.com/PaulyWolly/auth0-react-sample',
       liveUrl: 'https://pw-auth0-react-sample.netlify.app/',
+    },
+    {
+      name: 'MERN-MultiChat',
+      stack: 'React',
+      description:
+        'Multi-feature AI chat (React, Node, MongoDB, Claude/OpenAI, YouTube)',
+      githubUrl: 'https://github.com/PaulyWolly/MERN-MultiChat',
+      liveUrl: 'https://mern-multichat.onrender.com',
     },
   ],
 };
