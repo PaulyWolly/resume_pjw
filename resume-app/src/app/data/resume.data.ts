@@ -331,11 +331,12 @@ export const RESUME: Resume = {
       githubUrl: 'https://github.com/PaulyWolly/react-redux-firestore',
     },
     {
-      name: 'React Tutorial Library',
+      name: 'MERN-MultiChat',
       stack: 'React',
       description:
-        'Bootstrap UI with hooks, HOCs, Redux, Firebase Firestore, parent-child patterns',
-      githubUrl: 'https://github.com/PaulyWolly/react-hooks-firestore-crud',
+        'Multi-feature AI chat (React, Node, MongoDB, Claude/OpenAI, YouTube)',
+      githubUrl: 'https://github.com/PaulyWolly/MERN-MultiChat',
+      liveUrl: 'https://mern-multichat.onrender.com',
     },
     {
       name: 'Auth0 React Sample',
