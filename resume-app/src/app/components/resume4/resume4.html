@@ -1,13 +1,15 @@
-<article class="doc">
-  <header class="doc__banner">
+<article class="indeed">
+  <header class="indeed__banner">
     <h1>{{ resume().name }}</h1>
-    <p class="doc__headline">{{ resume().headline }}</p>
-    <p class="doc__contact">
+    <p class="indeed__headline">{{ resume().headline }}</p>
+    <p class="indeed__contact">
       <a [href]="'mailto:' + resume().contact.email">{{ resume().contact.email }}</a>
-      | {{ resume().contact.location }}
-      | {{ resume().contact.phone }}
+      |
+      {{ resume().contact.location }}
+      |
+      <a [href]="'tel:' + resume().contact.phone">{{ resume().contact.phone }}</a>
     </p>
-    <p class="doc__contact doc__contact--links">
+    <p class="indeed__contact indeed__contact--links">
       @for (link of resume().contact.links; track link.href; let i = $index) {
         @if (i > 0) {
           |
@@ -17,20 +19,20 @@
     </p>
   </header>
 
-  <section class="doc__section">
+  <section class="indeed__section">
     <h2>Summary</h2>
     <p>{{ resume().summary }}</p>
   </section>
 
-  <section class="doc__section">
+  <section class="indeed__section">
     <h2>Work Experience</h2>
     @for (job of resume().experience; track job.company + job.startDate) {
-      <article class="doc-job">
-        <div class="doc-job__top">
+      <article class="indeed-job">
+        <div class="indeed-job__top">
           <h3>{{ job.title }}</h3>
           <span>{{ job.startDate }} – {{ job.endDate }}</span>
         </div>
-        <p class="doc-job__company">
+        <p class="indeed-job__company">
           {{ job.company }} ({{ job.arrangement }})@if (job.site) {
             • {{ job.site }}
           }
@@ -44,44 +46,44 @@
     }
   </section>
 
-  <section class="doc__section">
+  <section class="indeed__section">
     <h2>Education</h2>
     @for (entry of resume().education; track entry.institution) {
-      <div class="doc-edu">
-        <div class="doc-edu__top">
+      <div class="indeed-edu">
+        <div class="indeed-edu__top">
           <strong>{{ entry.focus }}</strong>
           <span>{{ entry.startYear }} – {{ entry.endYear }}</span>
         </div>
         <p>{{ entry.institution }}, {{ entry.location }}</p>
         @if (entry.note) {
-          <p class="doc-edu__note">{{ entry.note }}</p>
+          <p class="indeed-edu__note">{{ entry.note }}</p>
         }
       </div>
     }
   </section>
 
-  <section class="doc__section">
+  <section class="indeed__section">
     <h2>Skills</h2>
     @for (group of resume().skillGroups; track group.category) {
-      <div class="doc-skills">
+      <div class="indeed-skills">
         <h3>{{ group.category }}</h3>
         <p>{{ group.skills.join(' · ') }}</p>
       </div>
     }
   </section>
 
-  <section class="doc__section">
+  <section class="indeed__section">
     <h2>Featured Projects</h2>
-    <div class="doc-projects">
-      <div>
+    <div class="indeed-projects">
+      <div class="indeed-projects__col">
         <h3>Angular</h3>
         @for (project of angularProjects(); track project.githubUrl) {
-          <div class="doc-project">
+          <div class="indeed-project">
             <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">
               {{ project.name }}
             </a>
             <p>{{ project.description }}</p>
-            <p class="doc-project__links">
+            <p class="indeed-project__links">
               <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
               @if (project.liveUrl) {
                 ·
@@ -91,15 +93,15 @@
           </div>
         }
       </div>
-      <div>
+      <div class="indeed-projects__col">
         <h3>React</h3>
         @for (project of reactProjects(); track project.githubUrl) {
-          <div class="doc-project">
+          <div class="indeed-project">
             <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">
               {{ project.name }}
             </a>
             <p>{{ project.description }}</p>
-            <p class="doc-project__links">
+            <p class="indeed-project__links">
               <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
               @if (project.liveUrl) {
                 ·

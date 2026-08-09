@@ -16,6 +16,8 @@ export interface Job {
   title: string;
   company: string;
   arrangement: string;
+  /** Optional city/region shown after the arrangement, e.g. Carlsbad, CA */
+  site?: string;
   startDate: string;
   endDate: string;
   highlights: string[];

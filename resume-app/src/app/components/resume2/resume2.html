@@ -38,7 +38,11 @@
           <h3 class="jl-job__role">{{ job.title }}</h3>
           <span class="jl-job__dates">{{ job.startDate }} – {{ job.endDate }}</span>
         </div>
-        <p class="jl-job__company">{{ job.company }} ({{ job.arrangement }})</p>
+        <p class="jl-job__company">
+          {{ job.company }} ({{ job.arrangement }})@if (job.site) {
+            • {{ job.site }}
+          }
+        </p>
         <ul class="jl-job__bullets">
           @for (item of job.highlights; track item) {
             <li>{{ item }}</li>

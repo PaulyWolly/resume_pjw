@@ -1,0 +1,206 @@
+.indeed {
+  background: #fff;
+  color: #1a1a1a;
+  font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  padding: 1.75rem 1.75rem 2rem;
+}
+
+.indeed__banner {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1.5px solid #222;
+}
+
+.indeed__banner h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.indeed__headline {
+  margin: 0.35rem 0 0.55rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.indeed__contact {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #444;
+}
+
+.indeed__contact--links {
+  margin-top: 0.3rem;
+}
+
+.indeed__contact a {
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.indeed__contact a:hover {
+  text-decoration: underline;
+}
+
+.indeed__section {
+  margin-top: 1.1rem;
+}
+
+.indeed__section h2 {
+  margin: 0 0 0.55rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.indeed__section > p {
+  margin: 0;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.indeed-job {
+  margin-bottom: 0.95rem;
+}
+
+.indeed-job__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.indeed-job__top h3 {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.indeed-job__top span {
+  font-size: 0.82rem;
+  color: #666;
+  white-space: nowrap;
+}
+
+.indeed-job__company {
+  margin: 0.15rem 0 0.35rem;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: #444;
+}
+
+.indeed-job ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.indeed-job li {
+  margin-bottom: 0.25rem;
+  font-size: 0.88rem;
+  color: #333;
+  list-style: disc;
+}
+
+.indeed-edu {
+  margin-bottom: 0.65rem;
+}
+
+.indeed-edu__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.indeed-edu__top span {
+  font-size: 0.82rem;
+  color: #666;
+  white-space: nowrap;
+}
+
+.indeed-edu p {
+  margin: 0.15rem 0 0;
+  font-size: 0.88rem;
+  color: #444;
+}
+
+.indeed-edu__note {
+  font-style: italic;
+  color: #666 !important;
+}
+
+.indeed-skills {
+  margin-bottom: 0.45rem;
+}
+
+.indeed-skills h3 {
+  margin: 0 0 0.15rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.indeed-skills p {
+  margin: 0;
+  font-size: 0.84rem;
+  color: #444;
+}
+
+.indeed-projects {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.indeed-projects__col h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  background: #e8e8e8;
+  text-align: center;
+  padding: 0.35rem 0.5rem;
+}
+
+.indeed-project {
+  margin-bottom: 0.75rem;
+}
+
+.indeed-project a {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.indeed-project a:hover {
+  text-decoration: underline;
+}
+
+.indeed-project p {
+  margin: 0.15rem 0 0;
+  font-size: 0.82rem;
+  color: #444;
+}
+
+.indeed-project__links {
+  font-size: 0.8rem !important;
+}
+
+.indeed-project__links a {
+  font-weight: 600;
+  color: #0563c1;
+}
+
+@media (max-width: 700px) {
+  .indeed-projects {
+    grid-template-columns: 1fr;
+  }
+
+  .indeed-job__top,
+  .indeed-edu__top {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+}

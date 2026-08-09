@@ -13,6 +13,7 @@ import { Skills } from './components/skills/skills';
 import { Projects } from './components/projects/projects';
 import { Resume2 } from './components/resume2/resume2';
 import { Resume3 } from './components/resume3/resume3';
+import { Resume4 } from './components/resume4/resume4';
 import { RESUME } from './data/resume.data';
 import { ResumeVersion } from './models/resume-version';
 import { DocxService } from './services/docx.service';
@@ -21,7 +22,7 @@ import { PdfService } from './services/pdf.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Header, Experience, Skills, Projects, Resume2, Resume3],
+  imports: [Header, Experience, Skills, Projects, Resume2, Resume3, Resume4],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -52,14 +53,34 @@ export class App {
 
   protected async downloadPdf(): Promise<void> {
     const v = this.version();
-    const filename = `PaulWelby_Resume_v${v}_Angular-Python-AI.pdf`;
+    const filename = `PaulWelby_Angular-React-Python-AI_${this.styleLabel(v)}_${this.downloadDateStamp()}.pdf`;
     await this.pdfService.download(this.resume, filename, v);
   }
 
   protected async downloadDocx(): Promise<void> {
     const v = this.version();
-    const filename = `PaulWelby_Resume_v${v}_Angular-Python-AI.docx`;
+    const filename = `PaulWelby_Angular-React-Python-AI_${this.styleLabel(v)}_${this.downloadDateStamp()}.docx`;
     await this.docxService.download(this.resume, filename, v);
+  }
+
+  /** Filename middle segment for each resume style. */
+  private styleLabel(version: ResumeVersion): string {
+    switch (version) {
+      case 1:
+        return 'Classic';
+      case 2:
+        return 'JobLeads';
+      case 3:
+        return 'Document';
+      case 4:
+        return 'Indeed';
+    }
+  }
+
+  /** Local date as M-D-YYYY for download filenames (e.g. 8-9-2026). */
+  private downloadDateStamp(): string {
+    const now = new Date();
+    return `${now.getMonth() + 1}-${now.getDate()}-${now.getFullYear()}`;
   }
 
   protected openRecommendation(): void {

@@ -35,21 +35,34 @@ export class PdfService {
     this.generating.set(true);
 
     try {
-      const { jsPDF } = await import('jspdf');
-      const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+      const doc = await this.buildDoc(resume, version);
+      doc.save(filename);
+    } finally {
+      this.generating.set(false);
+    }
+  }
+
+  /** Returns a PDF Blob for in-app preview (does not trigger download). */
+  async toBlob(resume: Resume, version: ResumeVersion = 1): Promise<Blob> {
+    const doc = await this.buildDoc(resume, version);
+    return doc.output('blob');
+  }
+
+  private async buildDoc(resume: Resume, version: ResumeVersion): Promise<JsPdfDoc> {
+    const { jsPDF } = await import('jspdf');
+    const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
       if (version === 2) {
         this.buildJobLeadsPdf(doc, resume);
       } else if (version === 3) {
         this.buildDocumentPdf(doc, resume);
+      } else if (version === 4) {
+        this.buildIndeedPdf(doc, resume);
       } else {
         this.buildClassicPdf(doc, resume);
       }
 
-      doc.save(filename);
-    } finally {
-      this.generating.set(false);
-    }
+    return doc;
   }
 
   /** Resume 1 — classic navy-banner layout */
@@ -179,6 +192,94 @@ export class PdfService {
     doc.text('Featured Projects', this.marginX, y);
     y += 6;
     this.drawProjects(doc, resume.projects, y);
+  }
+
+  /** Resume 4 — Indeed / ATS style (matches on-page Resume 4) */
+  private buildIndeedPdf(doc: JsPdfDoc, resume: Resume): void {
+    let y = this.marginTop;
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(20);
+    doc.setTextColor(...this.ink);
+    doc.text(resume.name, this.pageWidth / 2, y, { align: 'center' });
+    y += 7;
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.text(resume.headline, this.pageWidth / 2, y, { align: 'center' });
+    y += 5;
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(...this.muted);
+    const contactLine = [
+      resume.contact.email,
+      resume.contact.location,
+      resume.contact.phone,
+    ].join('  |  ');
+    doc.text(contactLine, this.pageWidth / 2, y, { align: 'center' });
+    y += 3.5;
+
+    const linksLine = resume.contact.links.map((l) => l.value).join('  |  ');
+    doc.text(linksLine, this.pageWidth / 2, y, { align: 'center' });
+    y += 4;
+
+    y = this.drawHr(doc, y);
+
+    y = this.drawIndeedSectionTitle(doc, 'Summary', y);
+    y = this.drawWrappedText(doc, resume.summary, y, 9, this.muted, 4);
+    y += 3;
+
+    y = this.drawIndeedSectionTitle(doc, 'Work Experience', y);
+    for (const job of resume.experience) {
+      y = this.beginJob(doc, job, y);
+      y = this.drawJob(doc, job, y);
+    }
+
+    y += 1;
+    y = this.drawIndeedSectionTitle(doc, 'Education', y);
+    for (const entry of resume.education) {
+      y = this.ensureSpace(doc, y, 12);
+      y = this.drawEducation(doc, entry, y);
+    }
+
+    y += 1;
+    y = this.drawIndeedSectionTitle(doc, 'Skills', y);
+    for (const group of resume.skillGroups) {
+      y = this.ensureSpace(doc, y, 12);
+      y = this.drawIndeedSkillGroup(doc, group, y);
+    }
+
+    y += 1;
+    y = this.drawIndeedSectionTitle(doc, 'Featured Projects', y);
+    this.drawProjects(doc, resume.projects, y);
+  }
+
+  private drawIndeedSectionTitle(doc: JsPdfDoc, title: string, y: number): number {
+    y = this.ensureSpace(doc, y, 12);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(...this.ink);
+    doc.text(title, this.marginX, y);
+    return y + 6;
+  }
+
+  private drawIndeedSkillGroup(
+    doc: JsPdfDoc,
+    group: Resume['skillGroups'][number],
+    y: number,
+  ): number {
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8.5);
+    doc.setTextColor(...this.ink);
+    doc.text(group.category, this.marginX, y);
+    y += 3.8;
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(...this.muted);
+    y = this.drawWrappedText(doc, group.skills.join(' · '), y, 8, this.muted, 3.6);
+    return y + 2.5;
   }
 
   /** Resume 3 — document layout (navy banner, plain skill lists) */
@@ -354,7 +455,10 @@ export class PdfService {
     // Company line — tight under title, like the web
     doc.setFontSize(8.5);
     doc.setTextColor(...this.muted);
-    doc.text(`${job.company} (${job.arrangement})`, this.marginX, y);
+    const companyLine = job.site
+      ? `${job.company} (${job.arrangement}) • ${job.site}`
+      : `${job.company} (${job.arrangement})`;
+    doc.text(companyLine, this.marginX, y);
     y += 4.8;
 
     for (const highlight of job.highlights) {

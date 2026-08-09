@@ -9,6 +9,9 @@
           <p class="job__company">
             {{ job.company }}
             <span class="job__arrangement">({{ job.arrangement }})</span>
+            @if (job.site) {
+              <span class="job__arrangement"> • {{ job.site }}</span>
+            }
           </p>
         </div>
         <time class="job__dates">{{ job.startDate }} – {{ job.endDate }}</time>
