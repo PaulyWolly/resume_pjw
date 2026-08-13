@@ -228,6 +228,7 @@ export const RESUME: Resume = {
     {
       category: 'AI & LLM Engineering',
       skills: [
+        'Generative AI',
         'Prompt Engineering',
         'OpenAI / Azure OpenAI',
         'Flowise',
