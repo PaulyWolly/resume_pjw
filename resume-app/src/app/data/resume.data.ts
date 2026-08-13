@@ -45,7 +45,7 @@ export const RESUME: Resume = {
       endDate: '06/2026',
       highlights: [
         'Led the architectural migration of enterprise Core and Prism web applications from Angular v14 to v20, programmatically refactoring the legacy UI codebase to adopt v15 Material Design Components (MDC).',
-        'Built and maintained complex, data-heavy enterprise grids with AG Grid Enterprise—sorting, filtering, column configuration, and high-volume datasets used across Core and Prism workflows.',
+        'Built and maintained complex, data-heavy enterprise grids with AG Grid (Community and Enterprise)—sorting, filtering, column configuration, and high-volume datasets used across Core and Prism workflows.',
         'Engineered custom CSS and component overrides to successfully mitigate breaking changes injected by, the MDC migration, maintaining strict visual and functional parity across all application layouts.',
         'Integrated .NET v8 services and APIs to access and deliver backend data required by the Angular front-end applications.',
         'Optimized application scalability and load times during the upgrade by designing modular component structures, implementing lazy loading, and refactoring NgRx state management.',
@@ -200,7 +200,7 @@ export const RESUME: Resume = {
       skills: [
         'Angular (v2–v20)',
         'Angular Material',
-        'AG Grid Enterprise',
+        'AG Grid (Community / Enterprise)',
         'NgRx',
         'TypeScript',
         'React',
