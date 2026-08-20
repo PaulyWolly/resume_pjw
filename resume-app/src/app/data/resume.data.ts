@@ -29,13 +29,12 @@ export const RESUME: Resume = {
     ],
   },
   summary:
-    'Highly accomplished Full Stack Developer with over 15 years of experience in designing, ' +
-    'developing, and deploying sophisticated web applications. Expertise in Angular, React, ' +
-    'Python/Streamlit, and AI technologies, including prompt engineering and LLM integration. ' +
-    'Proven ability to architect robust solutions, lead development teams, and mentor junior ' +
-    'engineers. Adept at leveraging modern frameworks and cloud platforms to deliver scalable, ' +
-    'high-performance applications and drive innovation. Committed to creating user-centric ' +
-    'interfaces and ensuring seamless integration of front-end and back-end systems.',
+    'Full Stack Developer with about 10 years of Angular experience (v2 through v20) and a ' +
+    'broader background building enterprise web applications since 2009. Strong in Angular, ' +
+    'TypeScript, React, Python/Streamlit, and Generative AI—including prompt engineering and ' +
+    'LLM integration. Proven ability to architect robust solutions, lead development teams, ' +
+    'and mentor engineers. Adept at modern frameworks and cloud platforms to deliver scalable, ' +
+    'user-centric applications with seamless front-end and back-end integration.',
   experience: [
     {
       title: 'Angular Developer',
