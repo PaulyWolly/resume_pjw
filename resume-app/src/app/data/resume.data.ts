@@ -2,7 +2,7 @@ import { Resume } from '../models/resume.model';
 
 export const RESUME: Resume = {
   name: 'Paul Welby',
-  headline: 'Full Stack Developer | Angular | React | Python | Generative AI',
+  headline: 'UI Developer | Angular | React | Python | Generative AI',
   contact: {
     email: 'pwelby@gmail.com',
     phone: '(619) 629-3770',
@@ -29,12 +29,13 @@ export const RESUME: Resume = {
     ],
   },
   summary:
-    'Full Stack Developer with about 10 years of Angular experience (v2 through v20) and a ' +
-    'broader background building enterprise web applications since 2009. Strong in Angular, ' +
-    'TypeScript, React, Python/Streamlit, and Generative AI—including prompt engineering and ' +
-    'LLM integration. Proven ability to architect robust solutions, lead development teams, ' +
-    'and mentor engineers. Adept at modern frameworks and cloud platforms to deliver scalable, ' +
-    'user-centric applications with seamless front-end and back-end integration.',
+    'UI Developer with about 10 years of Angular experience (v2 through v20) and a broader ' +
+    'background building enterprise web applications since 2009. Focused on front-end ' +
+    'architecture, UX-minded Angular/React interfaces, and design-to-production delivery, with ' +
+    'supporting backend experience in Python/Streamlit, Node, and REST APIs. Strong with ' +
+    'TypeScript, Generative AI UI integration, prompt engineering, and LLM-backed workflows. ' +
+    'Proven ability to lead UI efforts, mentor engineers, and ship scalable, accessible, ' +
+    'user-centric applications.',
   experience: [
     {
       title: 'Angular Developer',
