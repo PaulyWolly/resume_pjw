@@ -558,7 +558,7 @@ export class PdfService {
     colWidth: number,
   ): number {
     for (const project of projects) {
-      const primaryUrl = project.githubUrl || project.liveUrl || '';
+      const primaryUrl = project.liveUrl || project.githubUrl || '';
 
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(8);

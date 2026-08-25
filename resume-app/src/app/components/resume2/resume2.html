@@ -79,14 +79,18 @@
     <div class="jl-projects">
       <div>
         <h3 class="jl-projects__col">Angular</h3>
-        @for (project of angularProjects(); track project.githubUrl) {
+        @for (project of angularProjects(); track project.name) {
           <div class="jl-project">
             <p class="jl-project__name">{{ project.name }}</p>
             <p class="jl-project__desc">{{ project.description }}</p>
             <p class="jl-project__links">
-              <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
-              @if (project.liveUrl) {
+              @if (project.githubUrl) {
+                <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
+              }
+              @if (project.githubUrl && project.liveUrl) {
                 ·
+              }
+              @if (project.liveUrl) {
                 <a [href]="project.liveUrl" target="_blank" rel="noopener noreferrer">Live demo</a>
               }
             </p>
@@ -95,14 +99,18 @@
       </div>
       <div>
         <h3 class="jl-projects__col">React</h3>
-        @for (project of reactProjects(); track project.githubUrl) {
+        @for (project of reactProjects(); track project.name) {
           <div class="jl-project">
             <p class="jl-project__name">{{ project.name }}</p>
             <p class="jl-project__desc">{{ project.description }}</p>
             <p class="jl-project__links">
-              <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
-              @if (project.liveUrl) {
+              @if (project.githubUrl) {
+                <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
+              }
+              @if (project.githubUrl && project.liveUrl) {
                 ·
+              }
+              @if (project.liveUrl) {
                 <a [href]="project.liveUrl" target="_blank" rel="noopener noreferrer">Live demo</a>
               }
             </p>

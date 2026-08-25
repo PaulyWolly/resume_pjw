@@ -77,16 +77,24 @@
     <div class="indeed-projects">
       <div class="indeed-projects__col">
         <h3>Angular</h3>
-        @for (project of angularProjects(); track project.githubUrl) {
+        @for (project of angularProjects(); track project.name) {
           <div class="indeed-project">
-            <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">
+            <a
+              [href]="project.liveUrl || project.githubUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {{ project.name }}
             </a>
             <p>{{ project.description }}</p>
             <p class="indeed-project__links">
-              <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
-              @if (project.liveUrl) {
+              @if (project.githubUrl) {
+                <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
+              }
+              @if (project.githubUrl && project.liveUrl) {
                 ·
+              }
+              @if (project.liveUrl) {
                 <a [href]="project.liveUrl" target="_blank" rel="noopener noreferrer">Live demo</a>
               }
             </p>
@@ -95,16 +103,24 @@
       </div>
       <div class="indeed-projects__col">
         <h3>React</h3>
-        @for (project of reactProjects(); track project.githubUrl) {
+        @for (project of reactProjects(); track project.name) {
           <div class="indeed-project">
-            <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">
+            <a
+              [href]="project.liveUrl || project.githubUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {{ project.name }}
             </a>
             <p>{{ project.description }}</p>
             <p class="indeed-project__links">
-              <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
-              @if (project.liveUrl) {
+              @if (project.githubUrl) {
+                <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
+              }
+              @if (project.githubUrl && project.liveUrl) {
                 ·
+              }
+              @if (project.liveUrl) {
                 <a [href]="project.liveUrl" target="_blank" rel="noopener noreferrer">Live demo</a>
               }
             </p>

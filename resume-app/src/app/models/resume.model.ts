@@ -41,7 +41,8 @@ export interface Project {
   name: string;
   stack: 'Angular' | 'React';
   description: string;
-  githubUrl: string;
+  /** Omit when the repo is private — UI/PDF/Word show Live demo only. */
+  githubUrl?: string;
   liveUrl?: string;
 }
 
