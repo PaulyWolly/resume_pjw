@@ -272,7 +272,15 @@ export const RESUME: Resume = {
       stack: 'Angular',
       description:
         'Auth0/Google, JWT, WebSockets, "live" chat, profiles, image/video uploading',
+      githubUrl: 'https://github.com/PaulyWolly/My-Profiling-App_v17',
       liveUrl: 'https://my-profiling-app-v17-1.onrender.com/',
+    },
+    {
+      name: 'MEAN-MultiChat',
+      stack: 'Angular',
+      description:
+        'Multi-feature AI chat (Angular, Node, MongoDB, Claude/OpenAI)',
+      liveUrl: 'https://mean-multichat.onrender.com',
     },
     {
       name: 'MERN-MultiChat',
