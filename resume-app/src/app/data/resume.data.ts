@@ -200,6 +200,7 @@ export const RESUME: Resume = {
         'Angular (v2–v20)',
         'Angular Material',
         'AG Grid (Community / Enterprise)',
+        'RxJS',
         'NgRx',
         'TypeScript',
         'React',
