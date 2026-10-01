@@ -13,16 +13,11 @@
   display: inline-block;
 }
 
-.projects__intro {
-  margin: 0 0 1rem;
-  font-size: 0.88rem;
-  color: var(--ink-faint);
-}
-
 .projects__columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem 1.75rem;
+  margin-top: 0.65rem;
 }
 
 .projects__stack {

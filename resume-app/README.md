@@ -20,6 +20,15 @@ nvm use 20.19.1
 
 ## Development
 
+From the **repo root** (`myRESUME/`):
+
+```bash
+npm run install:app   # first time only
+npm start
+```
+
+Or from `resume-app/` as before:
+
 ```bash
 cd resume-app
 npm install
@@ -30,11 +39,13 @@ Open [http://localhost:4200](http://localhost:4200).
 
 ## Build
 
+From the repo root:
+
 ```bash
 npm run build
 ```
 
-Output goes to `dist/resume-app/browser/`.
+Output goes to `resume-app/dist/resume-app/browser/`.
 
 ## Deploy to Netlify
 

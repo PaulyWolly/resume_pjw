@@ -2,7 +2,7 @@ import { Resume } from '../models/resume.model';
 
 export const RESUME: Resume = {
   name: 'Paul Welby',
-  headline: 'UI Developer | Angular | React | Python | Generative AI',
+  headline: 'Angular / Front-End / UI Developer',
   contact: {
     email: 'pwelby@gmail.com',
     phone: '(619) 629-3770',
@@ -29,12 +29,9 @@ export const RESUME: Resume = {
     ],
   },
   summary:
-    'Results-driven UI Developer with 10+ years of experience architecting and delivering scalable, ' +
-    'user-centric enterprise applications. Proven expertise in Angular (v2-v20), TypeScript, and ' +
-    'integrating Generative AI solutions, driving innovation in complex development environments. ' +
-    'Focused on UX-minded Angular/React interfaces and design-to-production delivery, with ' +
-    'supporting backend experience in Python/Streamlit, Node, REST APIs, and MEAN & MERN stack ' +
-    'development. Proven ability to lead UI efforts, mentor engineers, and ship accessible applications.',
+    'Senior Front-End/Angular Developer with 10+ years of enterprise web application experience and deep Angular work from v2–v20. ' +
+    'Known for front-end architecture, UX-focused interface delivery, and AI-enabled UI integration using TypeScript, React, Node, Python, REST APIs, and LLM workflows. ' +
+    'AI-assisted development using Cursor and VS Code with Copilot, and prompt engineering skills.',
   experience: [
     {
       title: 'Angular Developer',
@@ -43,29 +40,26 @@ export const RESUME: Resume = {
       startDate: '10/2025',
       endDate: '06/2026',
       highlights: [
-        'Led the architectural migration of enterprise Core and Prism web applications from Angular v14 to v20, programmatically refactoring the legacy UI codebase to adopt v15 Material Design Components (MDC).',
+        'Led the architectural migration of two enterprise web applications - Core and Prism, from Angular v14 to v20, programmatically refactoring the legacy UI codebase to adopt v15 Material Design Components (MDC).',
         'Built and maintained complex, data-heavy enterprise grids with AG Grid (Community and Enterprise)—sorting, filtering, column configuration, and high-volume datasets used across Core and Prism workflows.',
-        'Engineered custom CSS and component overrides to successfully mitigate breaking changes injected by, the MDC migration, maintaining strict visual and functional parity across all application layouts.',
-        'Integrated .NET v8 services and APIs to access and deliver backend data required by the Angular front-end applications, using RxJS for Observables management and refactoring NgRx state management.',
-        'Optimized application scalability and load times during the upgrade by designing modular component structures and implementing lazy loading.',
-        'Streamlined development lifecycles by engineering automated Azure DevOps CI/CD pipelines to accelerate testing, staging, and deployment workflows for cross-functional Agile teams.',
+        'Engineered CSS and component overrides to absorb MDC breaking changes and preserve layout parity across the migrated applications.',
+        'Integrated .NET v8 services and APIs with RxJS Observables and NgRx state management for Angular front-end data delivery.',
+        'Built Azure DevOps CI/CD pipelines for Core and Prism supporting weekly sprint deployments to staging/production.',
       ],
     },
     {
-      title: 'Angular/Python Developer · Full Stack – UI Developer (Generative AI)',
+      title: 'Angular Developer · Generative AI',
       company: 'ThermoFisher Scientific',
       arrangement: 'Hybrid · InsightGlobal',
       site: 'Carlsbad, CA',
       startDate: '11/2023',
       endDate: '05/2025',
       highlights: [
-        'Architected and deployed an enterprise Generative AI Portal using Angular, TypeScript, and AWS, giving employees a secure environment to engage with advanced LLMs within a regulated life sciences context.',
-        'Engineered multiple Python POCs utilizing Streamlit, Flask, and FastAPI to prototype and demonstrate high-impact LLM-backed tools to internal business teams.',
-        'Customized Flowise Developer/Enterprise codebases to build and manage low-code agentic workflows, nodes, and production AI tools.',
-        'Implemented advanced prompt engineering practices, designing system/user instructions, chain-of-thought structures, and iterative output refinements to maximize model reliability.',
-        'Integrated full-stack AI pipelines by connecting the Angular front-end and Node/Express backend services with Azure Cognitive Services, Azure OpenAI, and native OpenAI LLMs.',
-        'Extended Flowise capabilities by building Neo4j and GraphQL NLP chatflow integrations to drive advanced, knowledge-graph-based AI interactions.',
-        'Developed robust data layers using PostgreSQL and MongoDB (leveraging Multer for image storage) managed via secure, high-performance REST APIs.',
+        'Architected and deployed an enterprise Generative AI portal using Angular, TypeScript, and AWS for secure employee access to LLMs in a regulated life sciences environment, adopted by 7 teams within the first 3 months.',
+        'Engineered Python POCs with Streamlit, Flask, and FastAPI to prototype LLM-backed tools for internal business teams.',
+        'Implemented prompt engineering patterns (system/user instructions, chain-of-thought, iterative refinement) to improve model reliability and accelerate internal prototyping.',
+        'Integrated Angular/Node pipelines with Azure Cognitive Services, Azure OpenAI, and OpenAI LLMs; built Flowise agentic workflows and Neo4j/GraphQL NLP chatflows.',
+        'Developed PostgreSQL and MongoDB-backed data layers behind secure REST APIs (Multer image storage) for Generative AI portal features.',
       ],
     },
     {
@@ -75,10 +69,8 @@ export const RESUME: Resume = {
       startDate: '06/2023',
       endDate: '09/2023',
       highlights: [
-        'Spearheaded the development of modern, responsive, and feature-rich web applications utilizing Angular, Angular CLI, and TypeScript to serve departmental workflows.',
-        'Architected robust front-end systems by implementing component-based design, lazy loading, and advanced enterprise state management using NgRx.',
-        'Ensured cross-browser compatibility and fluid responsive design, optimizing complex web interfaces to deliver seamless accessibility across diverse device types.',
-        'Drove Agile development execution by actively contributing to Scrum ceremonies, sprint planning, daily stand-ups, and retrospectives to accelerate project delivery timelines.',
+        'Built responsive Angular/TypeScript applications with component-based design, lazy loading, and NgRx state management.',
+        'Delivered accessible, cross-browser UI and contributed in Agile/Scrum ceremonies to accelerate sprint delivery.',
       ],
     },
     {
@@ -88,11 +80,8 @@ export const RESUME: Resume = {
       startDate: '04/2022',
       endDate: '11/2022',
       highlights: [
-        'Engineered front-end enhancements for "Erica," Bank of America\'s high-traffic AI Chatbot/Banker Assist application, utilizing Angular 12, TypeScript, WebSockets, and JIRA/Confluence workflows.',
-        'Mentored junior developers and established robust documentation frameworks within Confluence to streamline onboarding and maintain code quality standards.',
-        'Architected scalable UI components using lazy loading, code splitting, image optimization, and NgRx state management to ensure rapid data binding and exceptional application reliability.',
-        'Enforced enterprise coding standards by leading comprehensive code reviews, updating complex UI layouts, and guaranteeing strict cross-browser compatibility.',
-        'Integrated secure RESTful APIs to facilitate seamless asynchronous data exchange and synchronization between complex front-end interfaces and back-end systems.',
+        'Engineered front-end enhancements for Bank of America\'s Erica chatbot and banker-assist application using Angular 12, TypeScript, and WebSockets, facilitating faster user interaction and stronger security.',
+        'Architected scalable UI with lazy loading, code splitting, NgRx, and secure REST integrations; mentored juniors and led code reviews.',
       ],
     },
     {
@@ -102,10 +91,8 @@ export const RESUME: Resume = {
       startDate: '06/2021',
       endDate: '10/2021',
       highlights: [
-        'Architected and engineered front-end screen mockups and robust VBA code designs to integrate MS Access application layers smoothly with Microsoft SQL Server backends.',
-        'Optimized relational database performance by writing complex, high-performance SQL queries, stored procedures, and data-triggering scripts to manage high-volume application data.',
-        'Designed and implemented secure RESTful APIs to bridge communication gaps, streamline data exchange, and ensure real-time synchronization between front-end interfaces and external enterprise systems.',
-        'Enforced application security and user role-management frameworks, building customized form security layers to control data access and prevent unauthorized form submissions.',
+        'Built front-end mockups and VBA layers integrating MS Access with SQL Server; wrote high-performance SQL and stored procedures.',
+        'Implemented secure REST APIs and role-based form security for front-end/back-end data exchange.',
       ],
     },
     {
@@ -116,10 +103,8 @@ export const RESUME: Resume = {
       startDate: '06/2019',
       endDate: '04/2020',
       highlights: [
-        'Established company-wide design standards by authoring the primary Style Guide for web-based applications, ensuring consistent UI layouts, styling guidelines, and brand alignment.',
-        'Translated interactive wireframes and UX prototypes (designed in Axure-RP) into responsive, pixel-perfect front-end code using Angular, HTML5, CSS3, and JavaScript.',
-        'Engineered dynamic data visualizations by building custom Angular components integrated with Tableau reporting tools, delivering seamless data-point insights from PostgreSQL databases.',
-        'Managed diverse relational database connectivity, writing efficient SQL architectures to handle data feeds across PostgreSQL, MySQL, and Microsoft SQL Server (MSSQL).',
+        'Authored company style guide and delivered Angular front-end from Axure UX prototypes (HTML5/CSS3/JavaScript).',
+        'Built Angular + Tableau visualization components backed by PostgreSQL/MySQL/MSSQL data feeds.',
       ],
     },
     {
@@ -130,10 +115,8 @@ export const RESUME: Resume = {
       startDate: '10/2017',
       endDate: '03/2019',
       highlights: [
-        'Co-engineered an internal pharmacy claims management application, accelerating processing speeds and streamlining healthcare payer workflows.',
-        'Modernized legacy systems by architecting interactive prototypes that served as the foundation for an upgraded Angular 7 application, replacing outdated EFS software modules.',
-        'Collaborated with business analysts, QA, and development teams to translate complex pharmacy claims requirements into functional Axure RP prototypes and production-ready UI workflows.',
-        'Enforced robust data handling practices by designing high-performance RESTful APIs and optimizing database architectures to ensure secure, real-time data integration.',
+        'Co-engineered pharmacy claims management UI and Axure prototypes that seeded an Angular 7 modernization of legacy EFS modules.',
+        'Designed RESTful APIs and data layers for secure, real-time integration across claims workflows.',
       ],
     },
     {
@@ -144,21 +127,18 @@ export const RESUME: Resume = {
       startDate: '06/2016',
       endDate: '11/2016',
       highlights: [
-        'Modernized a legacy government-contract application with an HTML5/CSS3/Angular/Bootstrap face-lift, expanding functionality while preserving core workflows.',
-        'Integrated front-end Angular modules with MongoDB-backed services running on virtual machines for the upgraded application stack.',
+        'Modernized a government-contract app with HTML5/CSS3/Angular/Bootstrap and MongoDB-backed Angular modules.',
       ],
     },
     {
-      title: 'Senior Web Application Engineer/Developer',
+      title: 'Senior Front-End Developer',
       company: 'Verizon Networkfleet',
       arrangement: 'Onsite · The Select Group',
       site: 'San Diego, CA',
       startDate: '06/2015',
       endDate: '12/2015',
       highlights: [
-        'Re-branded and redesigned UI modules for the Verizon Networkfleet fleet-management application, including CSS/CSS3 styling, branding, color/font updates, and bug fixes for customer-facing and internal Customer Service apps.',
-        'Led responsive-layout restructuring of desktop-era pages using CSS3 media queries so content could adapt across browsers and devices (Firefox, Chrome, IE).',
-        'Built and iterated on new pages and modules in two-week Agile/Scrum sprints against a WebLogic 12 backend with Oracle data sources and SVN source control.',
+        'Rebranded Networkfleet UI modules and led responsive CSS3 layout work across browsers in two-week Agile sprints.',
       ],
     },
     {
@@ -169,28 +149,25 @@ export const RESUME: Resume = {
       startDate: '12/2009',
       endDate: '10/2014',
       highlights: [
-        'Built front-end experiences with HTML5, JavaScript, jQuery, and Sencha ExtJS (2.0–3.3), plus Adobe Flash and ASP.NET/CSS as needed.',
-        'Implemented PHP web services and SQL against Oracle 9i/10g/11g, MS SQL Server, and MySQL for portal data access and administration.',
-        'Administered SharePoint 2007/2010 sites with custom workflows, libraries, lists, web parts, and SharePoint Designer automations.',
-        'Later in this role, created a stand-alone AngularJS 1.2 video-watermarking application for Qualcomm Legal (HTML5/CSS3, ffmpeg processing, MySQL event logging).',
+        'Built front-end experiences with HTML5, JavaScript, jQuery, and ExtJS; delivered PHP/SQL services and an AngularJS video-watermarking app for Legal.',
       ],
     },
   ],
   education: [
     {
-      focus: 'Microbiology, Computer Science coursework',
+      focus: 'Computer Science & Microbiology coursework (no degree)',
       institution: 'University of California - Davis',
       location: 'Davis, United States',
       startYear: '1997',
       endYear: '1999',
     },
     {
-      focus: 'Liberal Arts coursework',
+      focus: 'Liberal Arts coursework (no degree)',
       institution: 'Pennsylvania State University',
       location: 'DuBois, United States',
       startYear: '1980',
       endYear: '1982',
-      note: 'Equivalent of an associate degree with 192 college units',
+      note: '192 college units completed',
     },
   ],
   skillGroups: [
@@ -198,31 +175,32 @@ export const RESUME: Resume = {
       category: 'Front-End',
       skills: [
         'Angular (v2–v20)',
-        'Angular Material',
-        'AG Grid (Community / Enterprise)',
-        'RxJS',
-        'NgRx',
         'TypeScript',
         'React',
-        'HTML5 / CSS3 / SASS',
         'JavaScript (ES6+)',
-        'Bootstrap / Tailwind',
+        'HTML5 / CSS3 / SASS',
+        'RxJS / NgRx',
         'Responsive UI',
-        'Figma / Axure-RP / Adobe XD',
+        'WCAG Accessibility',
+        'REST APIs',
+        'Angular Material',
+        'AG Grid',
       ],
+    },
+    {
+      category: 'Testing & Practices',
+      skills: ['Jasmine / Karma', 'Cypress / Jest', 'Agile / Scrum', 'Code Reviews', 'Mentoring'],
     },
     {
       category: 'Back-End & Data',
       skills: [
+        'REST APIs / GraphQL',
+        'Node / Express',
         'Python',
         'Streamlit / Flask / FastAPI',
-        'Node / Express',
-        'REST APIs / GraphQL',
         'PostgreSQL',
         'MongoDB',
         'MySQL / MSSQL',
-        'Neo4j',
-        'Firebase',
       ],
     },
     {
@@ -234,68 +212,25 @@ export const RESUME: Resume = {
         'Flowise',
         'Agentic Workflows',
         'RAG Concepts',
-        'Azure Cognitive Services',
       ],
     },
     {
       category: 'DevOps & Cloud',
-      skills: [
-        'Azure DevOps / CI/CD',
-        'AWS',
-        'Azure',
-        'Git / GitHub / GitLab',
-        'Docker',
-        'Netlify',
-      ],
-    },
-    {
-      category: 'Testing & Practices',
-      skills: [
-        'Jasmine / Karma',
-        'Cypress / Jest',
-        'Agile / Scrum',
-        'Code Reviews',
-        'Mentoring',
-        'WCAG Accessibility',
-      ],
+      skills: ['Azure DevOps / CI/CD', 'AWS', 'Azure', 'Git / GitHub / GitLab', 'Docker'],
     },
   ],
   projects: [
     {
-      name: 'Angular Recipe Book using NgRx',
-      stack: 'Angular',
-      description: 'Recipe book application w/ Angular, NgRx',
-      githubUrl: 'https://github.com/PaulyWolly/recipe-book-ngrx-v15b',
-      liveUrl: 'https://recipe-book-ngrx-v15b.netlify.app/auth',
-    },
-    {
-      name: 'MEAN Profiling App',
-      stack: 'Angular',
-      description:
-        'Auth0/Google, JWT, WebSockets, "live" chat, profiles, image/video uploading',
-      githubUrl: 'https://github.com/PaulyWolly/My-Profiling-App_v17',
-      liveUrl: 'https://my-profiling-app-v17-1.onrender.com/',
-    },
-    {
       name: 'MEAN-MultiChat',
       stack: 'Angular',
-      description:
-        'Multi-feature AI chat (Angular, Node, MongoDB, Claude/OpenAI)',
+      description: 'Angular + AI chat (MEAN) with Claude/OpenAI',
       liveUrl: 'https://mean-multichat.onrender.com',
     },
     {
       name: 'MERN-MultiChat',
       stack: 'React',
-      description:
-        'Multi-feature AI chat (React, Node, MongoDB, Claude/OpenAI, YouTube)',
+      description: 'React + AI chat (MERN) with Claude/OpenAI',
       liveUrl: 'https://mern-multichat.onrender.com',
-    },
-    {
-      name: 'React Auth0/hooks',
-      stack: 'React',
-      description: 'Auth0 login sample with React hooks and protected routes',
-      githubUrl: 'https://github.com/PaulyWolly/auth0-react-sample',
-      liveUrl: 'https://pw-auth0-react-sample.netlify.app/',
     },
   ],
 };

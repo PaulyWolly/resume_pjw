@@ -1,0 +1,11 @@
+{
+  "name": "my-resume",
+  "private": true,
+  "scripts": {
+    "install:app": "npm --prefix resume-app install",
+    "start": "npm --prefix resume-app start",
+    "build": "npm --prefix resume-app run build",
+    "watch": "npm --prefix resume-app run watch",
+    "test": "npm --prefix resume-app test"
+  }
+}
