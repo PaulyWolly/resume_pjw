@@ -55,7 +55,7 @@ export const RESUME: Resume = {
       startDate: '11/2023',
       endDate: '05/2025',
       highlights: [
-        'Adopted by seven teams within three months: architected and deployed an enterprise Generative AI portal (Angular, TypeScript, AWS), rolled out to production after v2 in a regulated life sciences environment.',
+        'Architected and deployed an enterprise Generative AI portal (Angular, TypeScript, AWS), rolled out to production after v2 in a regulated life sciences environment and adopted by seven teams within three months.',
         'Implemented prompt engineering patterns to improve model reliability and accelerate internal prototyping.',
         'Integrated Angular/Node pipelines with Azure OpenAI, Azure Cognitive Services, Flowise, Neo4j, and GraphQL to deliver AI chat workflows adopted by seven teams.',
         'Engineered Python POCs with Streamlit, Flask, and FastAPI to prototype LLM-backed tools for internal business teams.',
