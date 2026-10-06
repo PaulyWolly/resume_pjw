@@ -29,9 +29,10 @@ export const RESUME: Resume = {
     ],
   },
   summary:
-    'Senior Front-End/Angular Developer with 10+ years of enterprise web application experience and deep Angular work from v2–v20. ' +
-    'Known for front-end architecture, UX-focused interface delivery, and AI-enabled UI integration using TypeScript, React, Node, Python, REST APIs, and LLM workflows. ' +
-    'AI-assisted development using Cursor and VS Code with Copilot, and prompt engineering skills.',
+    'Senior Front-End/Angular Developer with 10+ years building enterprise web apps, specializing in Angular v2–v20 modernization, front-end architecture, and AI-enabled UI delivery. ' +
+    'Known for leading large-scale migrations, shipping accessible interfaces, and integrating APIs across regulated and data-heavy environments. ' +
+    'Recent impact includes Angular upgrades across 100+ screens, Generative AI portals adopted by multiple business teams, and measurable gains in load performance and defect reduction. ' +
+    'Mentors engineers and partners cross-functionally using TypeScript, NgRx, AG Grid, Azure OpenAI, AWS, and modern CI/CD practices.',
   experience: [
     {
       title: 'Angular Developer',
@@ -40,11 +41,10 @@ export const RESUME: Resume = {
       startDate: '10/2025',
       endDate: '06/2026',
       highlights: [
-        'Led the architectural migration of two enterprise web applications - Core and Prism, from Angular v14 to v20, programmatically refactoring the legacy UI codebase to adopt v15 Material Design Components (MDC).',
-        'Built and maintained complex, data-heavy enterprise grids with AG Grid (Community and Enterprise)—sorting, filtering, column configuration, and high-volume datasets used across Core and Prism workflows.',
+        'Led migration of two enterprise applications (100+ screens) from Angular v14 to v20, refactoring legacy UI code to MDC and reducing upgrade risk across both platforms.',
+        'Built AG Grid interfaces for high-volume enterprise workflows, cutting modal load time by ~20%.',
         'Engineered CSS and component overrides to absorb MDC breaking changes and preserve layout parity across the migrated applications.',
-        'Integrated .NET v8 services and APIs with RxJS Observables and NgRx state management for Angular front-end data delivery.',
-        'Built Azure DevOps CI/CD pipelines for Core and Prism supporting weekly sprint deployments to staging/production.',
+        'Built Azure DevOps CI/CD pipelines supporting weekly sprint deployments to staging/production for both applications.',
       ],
     },
     {
@@ -55,11 +55,10 @@ export const RESUME: Resume = {
       startDate: '11/2023',
       endDate: '05/2025',
       highlights: [
-        'Architected and deployed an enterprise Generative AI portal using Angular, TypeScript, and AWS for secure employee access to LLMs in a regulated life sciences environment, adopted by 7 teams within the first 3 months.',
+        'Adopted by seven teams within three months: architected and deployed an enterprise Generative AI portal (Angular, TypeScript, AWS), rolled out to production after v2 in a regulated life sciences environment.',
+        'Implemented prompt engineering patterns to improve model reliability and accelerate internal prototyping.',
+        'Integrated Angular/Node pipelines with Azure OpenAI, Azure Cognitive Services, Flowise, Neo4j, and GraphQL to deliver AI chat workflows adopted by seven teams.',
         'Engineered Python POCs with Streamlit, Flask, and FastAPI to prototype LLM-backed tools for internal business teams.',
-        'Implemented prompt engineering patterns (system/user instructions, chain-of-thought, iterative refinement) to improve model reliability and accelerate internal prototyping.',
-        'Integrated Angular/Node pipelines with Azure Cognitive Services, Azure OpenAI, and OpenAI LLMs; built Flowise agentic workflows and Neo4j/GraphQL NLP chatflows.',
-        'Developed PostgreSQL and MongoDB-backed data layers behind secure REST APIs (Multer image storage) for Generative AI portal features.',
       ],
     },
     {
@@ -69,8 +68,7 @@ export const RESUME: Resume = {
       startDate: '06/2023',
       endDate: '09/2023',
       highlights: [
-        'Built responsive Angular/TypeScript applications with component-based design, lazy loading, and NgRx state management.',
-        'Delivered accessible, cross-browser UI and contributed in Agile/Scrum ceremonies to accelerate sprint delivery.',
+        'Built responsive Angular/TypeScript applications with lazy loading and NgRx, significantly improving app load performance across enterprise UI modules.',
       ],
     },
     {
@@ -80,31 +78,29 @@ export const RESUME: Resume = {
       startDate: '04/2022',
       endDate: '11/2022',
       highlights: [
-        'Engineered front-end enhancements for Bank of America\'s Erica chatbot and banker-assist application using Angular 12, TypeScript, and WebSockets, facilitating faster user interaction and stronger security.',
-        'Architected scalable UI with lazy loading, code splitting, NgRx, and secure REST integrations; mentored juniors and led code reviews.',
+        'Engineered frontend enhancements for Bank of America\'s Erica chatbot and banker-assist application using Angular 12, TypeScript, and WebSockets, improving user interaction and security while reducing defects by ~70%.',
+        'Delivered scalable UI with lazy loading, NgRx, and secure REST integrations; mentored juniors and led code reviews.',
       ],
     },
     {
-      title: 'Lead Software Developer, SQL Developer',
+      title: 'Lead Software Developer',
       company: 'Harmony Technology Services',
       arrangement: 'FTE · Remote',
       startDate: '06/2021',
       endDate: '10/2021',
       highlights: [
-        'Built front-end mockups and VBA layers integrating MS Access with SQL Server; wrote high-performance SQL and stored procedures.',
-        'Implemented secure REST APIs and role-based form security for front-end/back-end data exchange.',
+        'Built front-end mockups and secure REST APIs integrating MS Access/SQL Server layers with role-based form security.',
       ],
     },
     {
       title: 'Front-End Software Developer',
       company: 'Accumen, Inc.',
       arrangement: 'FTE · Onsite',
-      site: 'San Diego',
+      site: 'San Diego, CA',
       startDate: '06/2019',
       endDate: '04/2020',
       highlights: [
-        'Authored company style guide and delivered Angular front-end from Axure UX prototypes (HTML5/CSS3/JavaScript).',
-        'Built Angular + Tableau visualization components backed by PostgreSQL/MySQL/MSSQL data feeds.',
+        'Delivered Angular front-end from Axure UX prototypes and Angular + Tableau visualizations backed by SQL data feeds.',
       ],
     },
     {
@@ -115,41 +111,15 @@ export const RESUME: Resume = {
       startDate: '10/2017',
       endDate: '03/2019',
       highlights: [
-        'Co-engineered pharmacy claims management UI and Axure prototypes that seeded an Angular 7 modernization of legacy EFS modules.',
-        'Designed RESTful APIs and data layers for secure, real-time integration across claims workflows.',
+        'Co-engineered pharmacy claims UI and Axure prototypes that seeded an Angular 7 modernization of legacy EFS modules.',
       ],
     },
     {
-      title: 'Senior Web Developer',
-      company: 'S.A.I.C.',
-      arrangement: 'Onsite · Volt',
-      site: 'San Diego, CA',
-      startDate: '06/2016',
-      endDate: '11/2016',
+      title: 'Earlier Front-End & Web Development',
+      company: 'Qualcomm · Verizon Networkfleet · S.A.I.C.',
+      arrangement: 'Onsite · San Diego, CA',
       highlights: [
-        'Modernized a government-contract app with HTML5/CSS3/Angular/Bootstrap and MongoDB-backed Angular modules.',
-      ],
-    },
-    {
-      title: 'Senior Front-End Developer',
-      company: 'Verizon Networkfleet',
-      arrangement: 'Onsite · The Select Group',
-      site: 'San Diego, CA',
-      startDate: '06/2015',
-      endDate: '12/2015',
-      highlights: [
-        'Rebranded Networkfleet UI modules and led responsive CSS3 layout work across browsers in two-week Agile sprints.',
-      ],
-    },
-    {
-      title: 'Staff Engineer / Programmer Analyst / Web Developer',
-      company: 'Qualcomm',
-      arrangement: 'Onsite · FTE',
-      site: 'San Diego, CA',
-      startDate: '12/2009',
-      endDate: '10/2014',
-      highlights: [
-        'Built front-end experiences with HTML5, JavaScript, jQuery, and ExtJS; delivered PHP/SQL services and an AngularJS video-watermarking app for Legal.',
+        'Delivered front-end UI (ExtJS, AngularJS, HTML5, CSS3) for telecom, fleet-management, and government-contract apps, including responsive redesigns and an AngularJS video-watermarking tool for Qualcomm Legal.',
       ],
     },
   ],
@@ -157,16 +127,12 @@ export const RESUME: Resume = {
     {
       focus: 'Computer Science & Microbiology coursework (no degree)',
       institution: 'University of California - Davis',
-      location: 'Davis, United States',
-      startYear: '1997',
-      endYear: '1999',
+      location: 'Davis, CA',
     },
     {
       focus: 'Liberal Arts coursework (no degree)',
       institution: 'Pennsylvania State University',
-      location: 'DuBois, United States',
-      startYear: '1980',
-      endYear: '1982',
+      location: 'DuBois, PA',
       note: '192 college units completed',
     },
   ],
@@ -176,60 +142,54 @@ export const RESUME: Resume = {
       skills: [
         'Angular (v2–v20)',
         'TypeScript',
+        'RxJS',
+        'NgRx',
+        'REST APIs / GraphQL',
+        'Angular Material',
+        'AG Grid',
+        'WCAG Accessibility',
         'React',
         'JavaScript (ES6+)',
         'HTML5 / CSS3 / SASS',
-        'RxJS / NgRx',
-        'Responsive UI',
-        'WCAG Accessibility',
-        'REST APIs',
-        'Angular Material',
-        'AG Grid',
-      ],
-    },
-    {
-      category: 'Testing & Practices',
-      skills: ['Jasmine / Karma', 'Cypress / Jest', 'Agile / Scrum', 'Code Reviews', 'Mentoring'],
-    },
-    {
-      category: 'Back-End & Data',
-      skills: [
-        'REST APIs / GraphQL',
-        'Node / Express',
-        'Python',
-        'Streamlit / Flask / FastAPI',
-        'PostgreSQL',
-        'MongoDB',
-        'MySQL / MSSQL',
-      ],
-    },
-    {
-      category: 'AI & LLM Engineering',
-      skills: [
-        'Generative AI',
-        'Prompt Engineering',
-        'OpenAI / Azure OpenAI',
-        'Flowise',
-        'Agentic Workflows',
-        'RAG Concepts',
       ],
     },
     {
       category: 'DevOps & Cloud',
       skills: ['Azure DevOps / CI/CD', 'AWS', 'Azure', 'Git / GitHub / GitLab', 'Docker'],
     },
+    {
+      category: 'AI & LLM Engineering',
+      skills: [
+        'Azure OpenAI / OpenAI',
+        'Generative AI',
+        'Prompt Engineering',
+        'Flowise',
+        'Agentic Workflows',
+        'RAG Concepts',
+      ],
+    },
+    {
+      category: 'Back-End & Data',
+      skills: ['Node / Express', 'Python', 'Streamlit / Flask / FastAPI', 'PostgreSQL', 'MongoDB'],
+    },
+    {
+      category: 'Testing & Practices',
+      skills: ['Jasmine / Karma', 'Cypress / Jest', 'Agile / Scrum', 'Mentoring'],
+    },
   ],
   projects: [
     {
       name: 'MEAN-MultiChat',
       stack: 'Angular',
-      description: 'Angular + AI chat (MEAN) with Claude/OpenAI',
+      description:
+        'Solves private multi-LLM chat access — Angular/MEAN UI integrating Claude and OpenAI in one conversational workspace.',
       liveUrl: 'https://mean-multichat.onrender.com',
     },
     {
       name: 'MERN-MultiChat',
       stack: 'React',
-      description: 'React + AI chat (MERN) with Claude/OpenAI',
+      description:
+        'Solves rapid AI chat prototyping — React/MERN UI with Claude/OpenAI and multi-feature conversational flows.',
       liveUrl: 'https://mern-multichat.onrender.com',
     },
   ],

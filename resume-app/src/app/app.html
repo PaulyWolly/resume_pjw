@@ -93,11 +93,10 @@
         <app-experience
           [jobs]="resume.experience"
           [education]="resume.education"
+          [projects]="resume.projects"
         />
 
         <app-skills [skillGroups]="resume.skillGroups" />
-
-        <app-projects [projects]="resume.projects" />
       }
       @case (2) {
         <app-resume2 [resume]="resume" />

@@ -1,7 +1,7 @@
 <section class="experience">
   <h3 class="section-title">Work Experience</h3>
 
-  @for (job of jobs(); track job.company + job.startDate) {
+  @for (job of jobs(); track job.company + job.title) {
     <article class="job">
       <div class="job__header">
         <div>
@@ -14,7 +14,9 @@
             }
           </p>
         </div>
-        <time class="job__dates">{{ job.startDate }} – {{ job.endDate }}</time>
+        @if (job.startDate && job.endDate) {
+          <time class="job__dates">{{ job.startDate }} – {{ job.endDate }}</time>
+        }
       </div>
 
       <ul class="job__highlights">
@@ -23,6 +25,10 @@
         }
       </ul>
     </article>
+  }
+
+  @if (projects().length) {
+    <app-projects [projects]="projects()" />
   }
 
   <h3 class="section-title section-title--spaced">Education</h3>
@@ -36,7 +42,9 @@
             {{ entry.institution }}, {{ entry.location }}
           </p>
         </div>
-        <time class="education__dates">{{ entry.startYear }} – {{ entry.endYear }}</time>
+        @if (entry.startYear && entry.endYear) {
+          <time class="education__dates">{{ entry.startYear }} – {{ entry.endYear }}</time>
+        }
       </div>
       @if (entry.note) {
         <p class="education__note">{{ entry.note }}</p>

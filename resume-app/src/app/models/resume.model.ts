@@ -18,8 +18,9 @@ export interface Job {
   arrangement: string;
   /** Optional city/region shown after the arrangement, e.g. Carlsbad, CA */
   site?: string;
-  startDate: string;
-  endDate: string;
+  /** Omit for summarized earlier-career blocks to reduce age-bias signals. */
+  startDate?: string;
+  endDate?: string;
   highlights: string[];
 }
 
@@ -27,8 +28,9 @@ export interface Education {
   focus: string;
   institution: string;
   location: string;
-  startYear: string;
-  endYear: string;
+  /** Omit years to keep the profile forward-looking. */
+  startYear?: string;
+  endYear?: string;
   note?: string;
 }
 

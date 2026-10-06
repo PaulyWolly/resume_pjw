@@ -81,6 +81,10 @@ export class PdfService {
     }
 
     y += 1.5;
+    y = this.drawSectionTitle(doc, 'Selected Projects', y);
+    y = this.drawProjects(doc, resume.projects, y);
+
+    y += 1.5;
     y = this.drawSectionTitle(doc, 'Education', y);
     for (const entry of resume.education) {
       y = this.ensureSpace(doc, y, 12);
@@ -93,10 +97,6 @@ export class PdfService {
       y = this.ensureSpace(doc, y, 12);
       y = this.drawSkillGroup(doc, group, y);
     }
-
-    y += 1.5;
-    y = this.drawSectionTitle(doc, 'Featured Projects', y);
-    this.drawProjects(doc, resume.projects, y);
   }
 
   /** Resume 2 — JobLeads / Masterclass style */
@@ -175,13 +175,9 @@ export class PdfService {
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(11);
     doc.setTextColor(...this.ink);
-    doc.text('Education', this.marginX, y);
+    doc.text('Selected Projects', this.marginX, y);
     y += 6;
-
-    for (const entry of resume.education) {
-      y = this.ensureSpace(doc, y, 12);
-      y = this.drawEducation(doc, entry, y);
-    }
+    y = this.drawProjects(doc, resume.projects, y);
 
     y += 1;
     y = this.drawHr(doc, y);
@@ -189,9 +185,13 @@ export class PdfService {
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(11);
     doc.setTextColor(...this.ink);
-    doc.text('Featured Projects', this.marginX, y);
+    doc.text('Education', this.marginX, y);
     y += 6;
-    this.drawProjects(doc, resume.projects, y);
+
+    for (const entry of resume.education) {
+      y = this.ensureSpace(doc, y, 12);
+      y = this.drawEducation(doc, entry, y);
+    }
   }
 
   /** Resume 4 — Indeed / ATS style (matches on-page Resume 4) */
@@ -237,6 +237,10 @@ export class PdfService {
     }
 
     y += 1;
+    y = this.drawIndeedSectionTitle(doc, 'Selected Projects', y);
+    y = this.drawProjects(doc, resume.projects, y);
+
+    y += 1;
     y = this.drawIndeedSectionTitle(doc, 'Education', y);
     for (const entry of resume.education) {
       y = this.ensureSpace(doc, y, 12);
@@ -249,10 +253,6 @@ export class PdfService {
       y = this.ensureSpace(doc, y, 12);
       y = this.drawIndeedSkillGroup(doc, group, y);
     }
-
-    y += 1;
-    y = this.drawIndeedSectionTitle(doc, 'Featured Projects', y);
-    this.drawProjects(doc, resume.projects, y);
   }
 
   private drawIndeedSectionTitle(doc: JsPdfDoc, title: string, y: number): number {
@@ -321,6 +321,10 @@ export class PdfService {
     }
 
     y += 1.5;
+    y = this.drawSectionTitle(doc, 'Selected Projects', y);
+    y = this.drawProjects(doc, resume.projects, y);
+
+    y += 1.5;
     y = this.drawSectionTitle(doc, 'Education', y);
     for (const entry of resume.education) {
       y = this.ensureSpace(doc, y, 12);
@@ -333,10 +337,6 @@ export class PdfService {
       y = this.ensureSpace(doc, y, 12);
       y = this.drawSkillGroup(doc, group, y);
     }
-
-    y += 1.5;
-    y = this.drawSectionTitle(doc, 'Featured Projects', y);
-    this.drawProjects(doc, resume.projects, y);
   }
 
   private drawHr(doc: JsPdfDoc, y: number): number {
@@ -364,12 +364,16 @@ export class PdfService {
 
     doc.setFontSize(7.5);
     doc.setTextColor(255, 255, 255);
-    const line1 = `${resume.contact.email}  |  ${resume.contact.location}  |  ${resume.contact.phone}`;
-    const line2 = resume.contact.links.map((l) => l.value).join('  |  ');
-    doc.text(line1, this.pageWidth / 2, 24, { align: 'center' });
-    doc.text(line2, this.pageWidth / 2, 29, { align: 'center' });
+    const contactLine = [
+      resume.contact.email,
+      resume.contact.location,
+      resume.contact.phone,
+    ].join('  |  ');
+    const linksLine = resume.contact.links.map((l) => l.value).join('  |  ');
+    doc.text(contactLine, this.pageWidth / 2, 24, { align: 'center' });
+    doc.text(linksLine, this.pageWidth / 2, 29, { align: 'center' });
 
-    return bannerHeight + 10;
+    return bannerHeight + 8;
   }
 
   private drawSectionTitle(doc: JsPdfDoc, title: string, y: number): number {
@@ -439,17 +443,19 @@ export class PdfService {
     job: Resume['experience'][number],
     y: number,
   ): number {
-    // Title + dates (same row)
+    // Title + dates (same row when dates exist)
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(10);
     doc.setTextColor(...this.ink);
     doc.text(job.title, this.marginX, y);
 
-    const dates = `${job.startDate} – ${job.endDate}`;
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(8.5);
-    doc.setTextColor(...this.faint);
-    doc.text(dates, this.pageWidth - this.marginX, y, { align: 'right' });
+    if (job.startDate && job.endDate) {
+      const dates = `${job.startDate} – ${job.endDate}`;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8.5);
+      doc.setTextColor(...this.faint);
+      doc.text(dates, this.pageWidth - this.marginX, y, { align: 'right' });
+    }
     y += 4.2;
 
     // Company line — tight under title, like the web
@@ -479,11 +485,13 @@ export class PdfService {
     doc.setTextColor(...this.ink);
     doc.text(entry.focus, this.marginX, y);
 
-    const dates = `${entry.startYear} – ${entry.endYear}`;
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(8.5);
-    doc.setTextColor(...this.faint);
-    doc.text(dates, this.pageWidth - this.marginX, y, { align: 'right' });
+    if (entry.startYear && entry.endYear) {
+      const dates = `${entry.startYear} – ${entry.endYear}`;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8.5);
+      doc.setTextColor(...this.faint);
+      doc.text(dates, this.pageWidth - this.marginX, y, { align: 'right' });
+    }
     y += 4.2;
 
     doc.setFontSize(8.5);

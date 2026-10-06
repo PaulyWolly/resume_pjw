@@ -10,7 +10,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Header } from './components/header/header';
 import { Experience } from './components/experience/experience';
 import { Skills } from './components/skills/skills';
-import { Projects } from './components/projects/projects';
 import { Resume2 } from './components/resume2/resume2';
 import { Resume3 } from './components/resume3/resume3';
 import { Resume4 } from './components/resume4/resume4';
@@ -22,7 +21,7 @@ import { PdfService } from './services/pdf.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Header, Experience, Skills, Projects, Resume2, Resume3, Resume4],
+  imports: [Header, Experience, Skills, Resume2, Resume3, Resume4],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -39,7 +38,7 @@ export class App {
     () => this.generatingPdf() || this.generatingDocx(),
   );
   protected readonly recommendationOpen = signal(false);
-  /** Default = classic navy-banner layout (header / experience / skills / projects). */
+  /** Default = classic navy-banner layout (header / experience+projects+education / skills). */
   protected readonly version = signal<ResumeVersion>(1);
 
   protected readonly recommendationPdfUrl = '/Letter_of_Recommendation-TFS.pdf';

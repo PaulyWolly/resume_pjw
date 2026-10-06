@@ -73,17 +73,11 @@ export class DocxService {
         new Paragraph({
           alignment: AlignmentType.CENTER,
           spacing: { after: 20 },
-          children: [
-            new TextRun({
-              text: `${resume.contact.email}  |  ${resume.contact.location}  |  ${resume.contact.phone}`,
-              size: 17,
-              font: 'Calibri',
-            }),
-          ],
+          children: this.contactInfoRuns(resume),
         }),
         new Paragraph({
           alignment: AlignmentType.CENTER,
-          spacing: { after: 120 },
+          spacing: { after: 80 },
           children: this.linkRuns(resume),
         }),
         this.sectionHeading(summaryTitle),
@@ -111,12 +105,16 @@ export class DocxService {
                 size: 20,
                 font: 'Calibri',
               }),
-              new TextRun({
-                text: `    ${job.startDate} – ${job.endDate}`,
-                size: 17,
-                font: 'Calibri',
-                color: '666666',
-              }),
+              ...(job.startDate && job.endDate
+                ? [
+                    new TextRun({
+                      text: `    ${job.startDate} – ${job.endDate}`,
+                      size: 17,
+                      font: 'Calibri',
+                      color: '666666',
+                    }),
+                  ]
+                : []),
             ],
           }),
           new Paragraph({
@@ -151,6 +149,9 @@ export class DocxService {
         }
       }
 
+      children.push(this.sectionHeading('Selected Projects'));
+      children.push(this.projectsTable(resume.projects));
+
       children.push(this.sectionHeading('Education'));
       for (const entry of resume.education) {
         children.push(
@@ -163,12 +164,16 @@ export class DocxService {
                 size: 18,
                 font: 'Calibri',
               }),
-              new TextRun({
-                text: `    ${entry.startYear} – ${entry.endYear}`,
-                size: 17,
-                font: 'Calibri',
-                color: '666666',
-              }),
+              ...(entry.startYear && entry.endYear
+                ? [
+                    new TextRun({
+                      text: `    ${entry.startYear} – ${entry.endYear}`,
+                      size: 17,
+                      font: 'Calibri',
+                      color: '666666',
+                    }),
+                  ]
+                : []),
             ],
           }),
           new Paragraph({
@@ -227,9 +232,6 @@ export class DocxService {
           }),
         );
       }
-
-      children.push(this.sectionHeading('Featured Projects'));
-      children.push(this.projectsTable(resume.projects));
 
       const doc = new Document({
         styles: {
@@ -290,27 +292,46 @@ export class DocxService {
     });
   }
 
+  private hyperlinkRun(text: string, url: string, size = 16): ExternalHyperlink {
+    return new ExternalHyperlink({
+      children: [
+        new TextRun({
+          text,
+          size,
+          font: 'Calibri',
+          color: '0563C1',
+          underline: { type: UnderlineType.SINGLE },
+        }),
+      ],
+      link: url,
+    });
+  }
+
+  /** Email | location | phone */
+  private contactInfoRuns(resume: Resume): (TextRun | ExternalHyperlink)[] {
+    const size = 16;
+    const font = 'Calibri';
+    const sep = () => new TextRun({ text: '  |  ', size, font });
+    const phoneDigits = resume.contact.phone.replace(/\D/g, '');
+
+    return [
+      this.hyperlinkRun(resume.contact.email, `mailto:${resume.contact.email}`, size),
+      sep(),
+      new TextRun({ text: resume.contact.location, size, font }),
+      sep(),
+      this.hyperlinkRun(resume.contact.phone, `tel:+1${phoneDigits}`, size),
+    ];
+  }
+
+  /** LinkedIn | GitHub | portfolio — own line so URLs do not wrap mid-link */
   private linkRuns(resume: Resume): (TextRun | ExternalHyperlink)[] {
     const runs: (TextRun | ExternalHyperlink)[] = [];
 
     resume.contact.links.forEach((link, index) => {
       if (index > 0) {
-        runs.push(new TextRun({ text: '  |  ', size: 17, font: 'Calibri' }));
+        runs.push(new TextRun({ text: '  |  ', size: 16, font: 'Calibri' }));
       }
-      runs.push(
-        new ExternalHyperlink({
-          children: [
-            new TextRun({
-              text: link.value,
-              size: 17,
-              font: 'Calibri',
-              color: '0563C1',
-              underline: { type: UnderlineType.SINGLE },
-            }),
-          ],
-          link: link.href,
-        }),
-      );
+      runs.push(this.hyperlinkRun(link.value, link.href, 16));
     });
 
     return runs;
