@@ -311,15 +311,15 @@ export class DocxService {
   private contactInfoRuns(resume: Resume): (TextRun | ExternalHyperlink)[] {
     const size = 16;
     const font = 'Calibri';
-    const sep = () => new TextRun({ text: '  |  ', size, font });
+    const sep = () => new TextRun({ text: ' | ', size, font });
     const phoneDigits = resume.contact.phone.replace(/\D/g, '');
 
     return [
-      this.hyperlinkRun(resume.contact.email, `mailto:${resume.contact.email}`, size),
+      this.hyperlinkRun(resume.contact.email.trim(), `mailto:${resume.contact.email.trim()}`, size),
       sep(),
-      new TextRun({ text: resume.contact.location, size, font }),
+      new TextRun({ text: resume.contact.location.trim(), size, font }),
       sep(),
-      this.hyperlinkRun(resume.contact.phone, `tel:+1${phoneDigits}`, size),
+      this.hyperlinkRun(resume.contact.phone.trim(), `tel:+1${phoneDigits}`, size),
     ];
   }
 
@@ -329,9 +329,9 @@ export class DocxService {
 
     resume.contact.links.forEach((link, index) => {
       if (index > 0) {
-        runs.push(new TextRun({ text: '  |  ', size: 16, font: 'Calibri' }));
+        runs.push(new TextRun({ text: ' | ', size: 16, font: 'Calibri' }));
       }
-      runs.push(this.hyperlinkRun(link.value, link.href, 16));
+      runs.push(this.hyperlinkRun(link.value.trim(), link.href, 16));
     });
 
     return runs;

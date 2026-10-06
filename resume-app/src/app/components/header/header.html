@@ -12,9 +12,7 @@
           class="resume-header__location"
           (click)="openMap()"
           title="View on Google Maps"
-        >
-          {{ contact().location }}
-        </button>
+        >{{ contact().location }}</button>
         <span class="resume-header__sep" aria-hidden="true">|</span>
         <a [href]="phoneHref(contact().phone)">{{ contact().phone }}</a>
       </p>

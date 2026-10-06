@@ -123,11 +123,11 @@ export class PdfService {
       resume.contact.location,
       resume.contact.email,
       resume.contact.phone,
-    ].join('  |  ');
+    ].join(' | ');
     doc.text(contactLine, this.pageWidth / 2, y, { align: 'center' });
     y += 3.5;
 
-    const linksLine = resume.contact.links.map((l) => l.value).join('  |  ');
+    const linksLine = resume.contact.links.map((l) => l.value).join(' | ');
     doc.text(linksLine, this.pageWidth / 2, y, { align: 'center' });
     y += 5;
 
@@ -216,11 +216,11 @@ export class PdfService {
       resume.contact.email,
       resume.contact.location,
       resume.contact.phone,
-    ].join('  |  ');
+    ].join(' | ');
     doc.text(contactLine, this.pageWidth / 2, y, { align: 'center' });
     y += 3.5;
 
-    const linksLine = resume.contact.links.map((l) => l.value).join('  |  ');
+    const linksLine = resume.contact.links.map((l) => l.value).join(' | ');
     doc.text(linksLine, this.pageWidth / 2, y, { align: 'center' });
     y += 4;
 
@@ -303,8 +303,8 @@ export class PdfService {
 
     doc.setFontSize(7.5);
     doc.setTextColor(255, 255, 255);
-    const line1 = `${resume.contact.email}  |  ${resume.contact.location}  |  ${resume.contact.phone}`;
-    const line2 = resume.contact.links.map((l) => l.value).join('  |  ');
+    const line1 = `${resume.contact.email} | ${resume.contact.location} | ${resume.contact.phone}`;
+    const line2 = resume.contact.links.map((l) => l.value).join(' | ');
     doc.text(line1, this.pageWidth / 2, 24, { align: 'center' });
     doc.text(line2, this.pageWidth / 2, 29, { align: 'center' });
 
@@ -368,8 +368,8 @@ export class PdfService {
       resume.contact.email,
       resume.contact.location,
       resume.contact.phone,
-    ].join('  |  ');
-    const linksLine = resume.contact.links.map((l) => l.value).join('  |  ');
+    ].join(' | ');
+    const linksLine = resume.contact.links.map((l) => l.value).join(' | ');
     doc.text(contactLine, this.pageWidth / 2, 24, { align: 'center' });
     doc.text(linksLine, this.pageWidth / 2, 29, { align: 'center' });
 

@@ -133,7 +133,7 @@ export const RESUME: Resume = {
       focus: 'Liberal Arts coursework (no degree)',
       institution: 'Pennsylvania State University',
       location: 'DuBois, PA',
-      note: '192 college units completed',
+      note: '192 college units completed.',
     },
   ],
   skillGroups: [
@@ -170,7 +170,7 @@ export const RESUME: Resume = {
     },
     {
       category: 'Back-End & Data',
-      skills: ['Node / Express', 'Python', 'Streamlit / Flask / FastAPI', 'PostgreSQL', 'MongoDB'],
+      skills: ['Node / Express', 'Python', 'Streamlit / Flask / FastAPI', 'PostgreSQL', 'MSSQL', 'MongoDB'],
     },
     {
       category: 'Testing & Practices',
