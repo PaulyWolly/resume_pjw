@@ -32,7 +32,7 @@ export const RESUME: Resume = {
     'Senior Front-End/Angular Developer with 10+ years building enterprise web apps, specializing in Angular v2–v20 modernization, front-end architecture, and AI-enabled UI delivery. ' +
     'Known for leading large-scale migrations, shipping accessible interfaces, and integrating APIs across regulated and data-heavy environments. ' +
     'Recent impact includes Angular upgrades across 100+ screens, Generative AI portals adopted by multiple business teams, and measurable gains in load performance and defect reduction. ' +
-    'Mentors engineers and partners cross-functionally using TypeScript, NgRx, AG Grid, Azure OpenAI, AWS, and modern CI/CD practices.',
+    'Mentored engineers and partners cross-functionally using TypeScript, NgRx, AG Grid, Azure OpenAI, AWS, and modern CI/CD practices.',
   experience: [
     {
       title: 'Angular Developer',
