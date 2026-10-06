@@ -44,6 +44,8 @@ export const RESUME: Resume = {
         'Led migration of two enterprise applications (100+ screens) from Angular v14 to v20, refactoring legacy UI code to MDC and reducing upgrade risk across both platforms.',
         'Built AG Grid interfaces for high-volume enterprise workflows, cutting modal load time by ~20%.',
         'Engineered CSS and component overrides to absorb MDC breaking changes and preserve layout parity across the migrated applications.',
+        'Integrated .NET v8 services and APIs with RxJS Observables and NgRx state management for Angular front-end data delivery.',
+        'Improved scalability and load times during the upgrade with modular components and lazy loading.',
         'Built Azure DevOps CI/CD pipelines supporting weekly sprint deployments to staging/production for both applications.',
       ],
     },
@@ -56,9 +58,11 @@ export const RESUME: Resume = {
       endDate: '05/2025',
       highlights: [
         'Architected and deployed an enterprise Generative AI portal (Angular, TypeScript, AWS), rolled out to production after v2 in a regulated life sciences environment and adopted by seven teams within three months.',
-        'Implemented prompt engineering patterns to improve model reliability and accelerate internal prototyping.',
+        'Implemented prompt engineering patterns (system/user instructions, chain-of-thought, iterative refinement) to improve model reliability and accelerate internal prototyping.',
         'Integrated Angular/Node pipelines with Azure OpenAI, Azure Cognitive Services, Flowise, Neo4j, and GraphQL to deliver AI chat workflows adopted by seven teams.',
         'Engineered Python POCs with Streamlit, Flask, and FastAPI to prototype LLM-backed tools for internal business teams.',
+        'Customized Flowise Developer/Enterprise codebases to build and manage low-code agentic workflows and production AI tools.',
+        'Developed PostgreSQL and MongoDB-backed data layers behind secure REST APIs (Multer image storage) for Generative AI portal features.',
       ],
     },
     {
@@ -69,6 +73,9 @@ export const RESUME: Resume = {
       endDate: '09/2023',
       highlights: [
         'Built responsive Angular/TypeScript applications with lazy loading and NgRx, significantly improving app load performance across enterprise UI modules.',
+        'Architected component-based front-end systems with advanced enterprise state management using NgRx.',
+        'Delivered accessible, cross-browser UI optimized for diverse devices and departmental workflows.',
+        'Contributed in Agile/Scrum ceremonies—sprint planning, stand-ups, and retrospectives—to accelerate delivery.',
       ],
     },
     {
@@ -79,7 +86,9 @@ export const RESUME: Resume = {
       endDate: '11/2022',
       highlights: [
         'Engineered frontend enhancements for Bank of America\'s Erica chatbot and banker-assist application using Angular 12, TypeScript, and WebSockets, improving user interaction and security while reducing defects by ~70%.',
-        'Delivered scalable UI with lazy loading, NgRx, and secure REST integrations; mentored juniors and led code reviews.',
+        'Architected scalable UI with lazy loading, code splitting, image optimization, and NgRx state management.',
+        'Integrated secure RESTful APIs for asynchronous data exchange between front-end interfaces and back-end systems.',
+        'Mentored junior developers, led code reviews, and enforced enterprise coding and cross-browser standards.',
       ],
     },
     {
@@ -89,7 +98,10 @@ export const RESUME: Resume = {
       startDate: '06/2021',
       endDate: '10/2021',
       highlights: [
-        'Built front-end mockups and secure REST APIs integrating MS Access/SQL Server layers with role-based form security.',
+        'Built front-end screen mockups and VBA layers integrating MS Access applications with Microsoft SQL Server backends.',
+        'Wrote high-performance SQL queries, stored procedures, and data-triggering scripts for high-volume application data.',
+        'Implemented secure REST APIs for real-time synchronization between front-end interfaces and external systems.',
+        'Enforced role-based form security layers to control data access and prevent unauthorized submissions.',
       ],
     },
     {
@@ -100,7 +112,10 @@ export const RESUME: Resume = {
       startDate: '06/2019',
       endDate: '04/2020',
       highlights: [
-        'Delivered Angular front-end from Axure UX prototypes and Angular + Tableau visualizations backed by SQL data feeds.',
+        'Authored the company Style Guide for web applications, aligning UI layouts, styling, and brand standards.',
+        'Translated Axure-RP UX prototypes into responsive Angular front-end (HTML5, CSS3, JavaScript).',
+        'Built Angular + Tableau visualization components delivering data insights from PostgreSQL databases.',
+        'Managed SQL data feeds across PostgreSQL, MySQL, and MSSQL for reporting and application workflows.',
       ],
     },
     {
@@ -111,7 +126,10 @@ export const RESUME: Resume = {
       startDate: '10/2017',
       endDate: '03/2019',
       highlights: [
-        'Co-engineered pharmacy claims UI and Axure prototypes that seeded an Angular 7 modernization of legacy EFS modules.',
+        'Co-engineered an internal pharmacy claims management application, accelerating processing and payer workflows.',
+        'Produced Axure RP prototypes that seeded an Angular 7 modernization replacing legacy EFS modules.',
+        'Partnered with BA, QA, and development teams to translate complex claims requirements into production UI.',
+        'Designed RESTful APIs and data layers for secure, real-time integration across claims workflows.',
       ],
     },
     {
@@ -119,7 +137,10 @@ export const RESUME: Resume = {
       company: 'Qualcomm · Verizon Networkfleet · S.A.I.C.',
       arrangement: 'Onsite · San Diego, CA',
       highlights: [
-        'Delivered front-end UI (ExtJS, AngularJS, HTML5, CSS3) for telecom, fleet-management, and government-contract apps, including responsive redesigns and an AngularJS video-watermarking tool for Qualcomm Legal.',
+        'Delivered front-end UI (ExtJS, AngularJS, HTML5, CSS3) for telecom, fleet-management, and government-contract apps.',
+        'Led responsive CSS3 layout redesigns and Agile sprint delivery for customer-facing and internal service apps.',
+        'Built an AngularJS video-watermarking tool for Qualcomm Legal (HTML5/CSS3, ffmpeg, MySQL event logging).',
+        'Modernized a government-contract application with Angular/Bootstrap and MongoDB-backed front-end modules.',
       ],
     },
   ],
